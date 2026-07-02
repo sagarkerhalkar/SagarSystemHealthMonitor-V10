@@ -1,28 +1,12 @@
-﻿START NEW CHAT HANDOFF â€” V10 SYSTEM HEALTH MONITOR
+Continue Sagar System Health Monitor V10 from this locked source-of-truth:
+D:\SagarMonitor_V10_CleanBuild\docs\V10_COMPLETE_REQUIREMENT_PROGRESS_MATRIX.md
 
-Do not start from zero.
-Read these files first:
-
-1. docs/V10_MASTER_SOURCE_OF_TRUTH_FROM_DAY_ZERO.md
-2. docs/LAST_ONE_HOUR_DISCUSSION_AND_DECISIONS.md
-3. docs/V10_DATABASE_REQUIREMENTS_LOCKED.md
-4. docs/V10_ACCEPTANCE_TEST_CHECKLIST.md
-5. docs/V10_DEVELOPMENT_RULES_NO_MORE_PATCH_LOOP.md
-6. docs/V10_GITHUB_AUTOSAVE_RULE.md
-
-Project paths:
-
-- Main stable: D:\SagarSystemHealthMonitor, port 2278. Do not touch unless explicitly asked.
-- V10 development: D:\SagarMonitor_V10_CleanBuild, port 2294.
-- GitHub repo target: sagarkerhalkar/SagarSystemHealthMonitor-V10.
-
-User requirement:
-
-Complete V10 customer web app, not patches. DB first, API second, client payload third, UI fourth, CI/security/rollback fifth. Preserve old working modules and locked notification logic.
-
-Critical rules:
-
-- No UI-only patch.
-- No final claim without checklist.
-- No overwriting old working logic.
-- Commit/push requirements, errors, fixes, and source to GitHub automatically.
+Rules:
+1. Do not touch main 2278 unless explicitly approved.
+2. V10 target is D:\SagarMonitor_V10_CleanBuild on port 2294.
+3. Do not provide UI-only patches.
+4. Build DB first, API second, client data third, UI fourth, tests fifth.
+5. Preserve notification backend rules.
+6. Preserve old working modules from backup and merge carefully.
+7. Update GitHub and docs after every change.
+8. Final means all acceptance tests pass, not just page opens.
