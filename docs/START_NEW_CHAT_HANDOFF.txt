@@ -1,0 +1,3 @@
+Start of new chat instruction:
+
+We are continuing the V10 Next Toppers customer version of Sagar System Health Monitor. Use the attached `V10_LOCKED_REQUIREMENTS_AND_ROADMAP.md` as the source-of-truth. Do not make UI-only patches. Build DB-first, API-second, UI-third. Preserve main 2278. Work only on V10 2294. The prior issue was repeated UI patches overwriting old working logic. The final app must pass the Definition of Done in the locked roadmap.

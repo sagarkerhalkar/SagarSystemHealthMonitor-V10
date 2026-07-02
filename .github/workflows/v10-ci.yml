@@ -1,0 +1,49 @@
+﻿name: V10 CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Python compile check
+        shell: pwsh
+        run: |
+          $files = Get-ChildItem -Recurse -Filter *.py | Where-Object { $_.FullName -notmatch '__pycache__|\.venv|venv' }
+          foreach ($f in $files) {
+            python -m py_compile $f.FullName
+          }
+      - name: Required docs check
+        shell: pwsh
+        run: |
+          $required = @(
+            'docs/LOCKED_REQUIREMENTS.md',
+            'docs/WORK_LOG.md',
+            'docs/ERROR_FIX_HISTORY.md',
+            'docs/TEST_CHECKLIST.md',
+            'docs/DB_REQUIREMENTS.md'
+          )
+          foreach ($r in $required) {
+            if (!(Test-Path $r)) { throw "Missing $r" }
+          }
+      - name: Secret hygiene check
+        shell: pwsh
+        run: |
+          $files = Get-ChildItem -Recurse -File |
+            Where-Object { $_.FullName -notmatch '\.git|__pycache__|\.venv|venv' } |
+            Where-Object { $_.Extension -in '.py','.ps1','.js','.html','.css','.md','.txt','.yml','.yaml','.json' }
+          $bad = @()
+          foreach ($f in $files) {
+            $m = Select-String -Path $f.FullName -Pattern 'api[_-]?key\s*=|secret\s*=|token\s*=' -ErrorAction SilentlyContinue
+            if ($m) { $bad += $m }
+          }
+          if ($bad.Count -gt 0) {
+            $bad | Select-Object -First 20 | Format-List | Out-String | Write-Host
+            throw 'Potential secret pattern found. Review before delivery.'
+          }

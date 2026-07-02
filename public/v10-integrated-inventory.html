@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>V10 Integrated Inventory Check</title>
+<style>
+  body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f7fb;color:#102033}
+  header{background:#0b1b34;color:#fff;padding:18px 24px;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px rgba(0,0,0,.18)}
+  h1{margin:0;font-size:22px} .sub{opacity:.8;font-size:13px;margin-top:5px}
+  main{padding:18px;max-width:1500px;margin:auto}.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  button,a.btn{border:0;background:#1d65d8;color:#fff;padding:9px 13px;border-radius:8px;text-decoration:none;cursor:pointer;font-weight:600}
+  button.secondary,a.secondary{background:#e9eef7;color:#102033}.ok{color:#067647}.bad{color:#b42318}.card{background:#fff;border:1px solid #d8e0ec;border-radius:12px;padding:14px;margin:12px 0;box-shadow:0 6px 20px rgba(12,31,61,.05)}
+  .grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:12px}.metric b{font-size:28px;display:block}.metric span{font-size:12px;color:#5d6b82}
+  table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:9px 10px;border-bottom:1px solid #e3e9f3;text-align:left;vertical-align:top;font-size:13px}th{background:#eef3fb;color:#41516a;position:sticky;top:76px;z-index:1}.wrap{overflow:auto;max-height:62vh;border:1px solid #d8e0ec;border-radius:10px}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button.active{background:#0b1b34}.hide{display:none}select,input{padding:8px;border:1px solid #cfd8e6;border-radius:8px;background:#fff}small{color:#667085}.warn{background:#fff7e6;border-color:#ffd28a}.form{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:8px}.form button{grid-column:auto}@media(max-width:900px){.grid,.form{grid-template-columns:1fr}.wrap{max-height:none}th{position:static}}
+</style>
+</head>
+<body>
+<header><h1>V10 Integrated Inventory Check</h1><div class="sub">Old main UI remains unchanged. This page only verifies merged HW/SW/GPU/current-machine data from live 2278 DB.</div></header>
+<main>
+  <div class="bar">
+    <a class="btn secondary" href="/">Back to old UI</a>
+    <button onclick="loadAll()">Refresh</button>
+    <select id="machineSelect" onchange="loadMachine()"></select>
+    <input id="q" placeholder="Search table" oninput="renderActive()" />
+    <span id="status"></span>
+  </div>
+  <div class="grid" id="metrics"></div>
+  <div class="tabs">
+    <button class="active" onclick="tab('machines')">Current Machines</button>
+    <button onclick="tab('machine360')">Machine 360</button>
+    <button onclick="tab('hardware')">H/W Inventory</button>
+    <button onclick="tab('gpu')">GPU</button>
+    <button onclick="tab('software')">S/W Inventory</button>
+    <button onclick="tab('usb')">USB</button>
+    <button onclick="tab('register')">Software License Register</button>
+    <button onclick="tab('downloads')">Downloads</button>
+  </div>
+  <section id="machines" class="card"><h2>Current Machine Concept</h2><p>One current row per real PC. Stale fake serial/duplicate rows are hidden when richer row exists.</p><div class="wrap" id="machinesBody"></div></section>
+  <section id="machine360" class="card hide"><h2>Machine 360</h2><div id="machineBody"></div></section>
+  <section id="hardware" class="card hide"><h2>Hardware Inventory</h2><div class="wrap" id="hardwareBody"></div></section>
+  <section id="gpu" class="card hide"><h2>GPU Inventory</h2><div class="wrap" id="gpuBody"></div></section>
+  <section id="software" class="card hide"><h2>Software Inventory from Clients</h2><div class="wrap" id="softwareBody"></div></section>
+  <section id="usb" class="card hide"><h2>USB / Peripheral Inventory</h2><div class="wrap" id="usbBody"></div></section>
+  <section id="register" class="card hide"><h2>Software License Register</h2><p class="warn card">Store username/account and password vault reference only. Do not store plaintext passwords.</p><div class="form"><input id="srId" placeholder="ID blank=auto"><input id="srProduct" placeholder="Product"><input id="srVendor" placeholder="Vendor"><input id="srLicense" placeholder="License type"><input id="srSeats" placeholder="Seats" value="1"><input id="srEmployee" placeholder="Employee"><input id="srMachine" placeholder="Machine"><input id="srUser" placeholder="Login username/account"><input id="srVault" placeholder="Password vault/ref"><input id="srKey" placeholder="Key/ref/last5"><input id="srBill" placeholder="Bill/Invoice/PO No"><input id="srLink" placeholder="Proof link"><input id="srRenewal" placeholder="Renewal/expiry"><input id="srStatus" placeholder="Status" value="Active"><button onclick="saveRegister()">Save</button></div><div class="wrap" id="registerBody" style="margin-top:12px"></div></section>
+  <section id="downloads" class="card hide"><h2>Downloads</h2><p><a class="btn" href="/api/v10/export/current_machines.csv">Current Machines CSV</a> <a class="btn" href="/api/v10/export/hardware_inventory.csv">Hardware Inventory CSV</a> <a class="btn" href="/api/v10/export/gpu_inventory.csv">GPU CSV</a> <a class="btn" href="/api/v10/export/software_inventory.csv">Software CSV</a> <a class="btn" href="/api/v10/export/usb_inventory.csv">USB CSV</a> <a class="btn" href="/api/v10/export/software_register.csv">Software Register CSV</a></p></section>
+</main>
+<script>
+let data={machines:[],hardware:[],gpu:[],software:[],usb:[],register:[],machine:null};let active='machines';
+async function api(u,opt){let r=await fetch(u,{credentials:'include',...(opt||{})}); if(!r.ok) throw new Error(await r.text()); return await r.json();}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function keys(rows){let out=[]; rows.slice(0,50).forEach(r=>Object.keys(r||{}).forEach(k=>{if(!out.includes(k))out.push(k)})); return out.slice(0,28)}
+function table(rows){let q=(document.getElementById('q').value||'').toLowerCase(); rows=(rows||[]).filter(r=>!q||JSON.stringify(r).toLowerCase().includes(q)); let ks=keys(rows); if(!rows.length)return '<p>No rows</p>'; return '<table><thead><tr>'+ks.map(k=>'<th>'+esc(k)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+ks.map(k=>'<td>'+esc(Array.isArray(r[k])?r[k].join('; '):(typeof r[k]==='object'&&r[k]?JSON.stringify(r[k]):r[k]))+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
+function setStatus(t,ok=true){status.innerHTML='<b class="'+(ok?'ok':'bad')+'">'+esc(t)+'</b>'}
+async function loadAll(){try{setStatus('loading...');let st=await api('/api/v10/status');let m=await api('/api/v10/current-machines');data.machines=m.machines||[];machineSelect.innerHTML=data.machines.map(x=>'<option value="'+esc(x.machine_id)+'">'+esc(x.hostname||x.machine_id)+'</option>').join('');let [h,g,s,u,r]=await Promise.all([api('/api/v10/hardware-inventory'),api('/api/v10/gpu-inventory'),api('/api/v10/software-inventory'),api('/api/v10/usb-inventory'),api('/api/v10/software-register')]);data.hardware=h.rows||[];data.gpu=g.rows||[];data.software=s.rows||[];data.usb=u.rows||[];data.register=r.rows||[];metrics.innerHTML='<div class="card metric"><span>Machines</span><b>'+data.machines.length+'</b></div><div class="card metric"><span>Hardware rows</span><b>'+data.hardware.length+'</b></div><div class="card metric"><span>Software rows</span><b>'+data.software.length+'</b></div><div class="card metric"><span>GPU rows</span><b>'+data.gpu.length+'</b></div>'; await loadMachine(); renderActive(); setStatus('OK '+(st.version||''));}catch(e){setStatus(e.message,false)}}
+async function loadMachine(){let id=machineSelect.value || (data.machines[0]&&data.machines[0].machine_id)||''; if(!id)return; let j=await api('/api/v10/machine-360?id='+encodeURIComponent(id)); data.machine=j; renderActive();}
+function renderActive(){machinesBody.innerHTML=table(data.machines); hardwareBody.innerHTML=table(data.hardware); gpuBody.innerHTML=table(data.gpu); softwareBody.innerHTML=table(data.software); usbBody.innerHTML=table(data.usb); registerBody.innerHTML=table(data.register); if(data.machine){machineBody.innerHTML='<h3>'+esc(data.machine.machine?.hostname||'')+'</h3><div class="grid"><div class="card"><b>CPU</b><pre>'+esc(JSON.stringify(data.machine.cpu,null,2))+'</pre></div><div class="card"><b>Memory</b><pre>'+esc(JSON.stringify(data.machine.memory,null,2))+'</pre></div><div class="card"><b>Disks</b><pre>'+esc(JSON.stringify(data.machine.disks,null,2))+'</pre></div><div class="card"><b>GPU</b><pre>'+esc(JSON.stringify(data.machine.gpus,null,2))+'</pre></div></div><h3>Software on this machine</h3><div class="wrap">'+table(data.machine.software||[])+'</div>';}}
+function tab(id){active=id;document.querySelectorAll('main section').forEach(s=>s.classList.add('hide'));document.getElementById(id).classList.remove('hide');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');renderActive();}
+async function saveRegister(){let body={id:srId.value,product_name:srProduct.value,vendor:srVendor.value,license_type:srLicense.value,license_count:srSeats.value,assigned_to_employee:srEmployee.value,assigned_to_machine:srMachine.value,login_username:srUser.value,password_vault_ref:srVault.value,license_key_or_serial_ref:srKey.value,bill_invoice_po_no:srBill.value,bill_link:srLink.value,renewal_date:srRenewal.value,lifecycle_status:srStatus.value}; await api('/api/v10/software-register/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); await loadAll();}
+loadAll();
+</script>
+</body>
+</html>

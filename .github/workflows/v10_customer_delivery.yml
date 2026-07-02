@@ -1,0 +1,25 @@
+name: V10 Customer Delivery Smoke
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  v10-static-smoke:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check key files exist
+        shell: pwsh
+        run: |
+          $required = @(
+            'public/index.html',
+            'public/app.js',
+            'public/styles.css',
+            'inventory_30min.py',
+            'tests/TEST_V10_FINAL_STUDIED_REQUIREMENTS.ps1',
+            'tests/TEST_V10_FINAL_SECURITY_AND_CICD_STATIC.ps1'
+          )
+          foreach($f in $required){ if(!(Test-Path $f)){ throw "Missing $f" } }
+      - name: Static source checks
+        shell: pwsh
+        run: |
+          powershell -ExecutionPolicy Bypass -File tests/TEST_V10_FINAL_SECURITY_AND_CICD_STATIC.ps1 -App $pwd

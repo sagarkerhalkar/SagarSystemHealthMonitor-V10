@@ -1,0 +1,10 @@
+{
+  "company_name": "Next Toppers",
+  "product_name": "System Health Monitor Tool",
+  "website_url": "https://www.nexttoppers.com/",
+  "logo": "/assets/brand/nexttoppers_logo.png",
+  "login_photo": "/assets/brand/nexttoppers_login_photo.png",
+  "theme": "nexttoppers-classic-saas",
+  "primary": "#00f0c8",
+  "secondary": "#0a74ff"
+}

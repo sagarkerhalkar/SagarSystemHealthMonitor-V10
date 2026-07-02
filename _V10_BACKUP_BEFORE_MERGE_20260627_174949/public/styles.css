@@ -1,0 +1,65 @@
+﻿:root{
+  --bg:#07111f;
+  --panel:rgba(255,255,255,.08);
+  --panel2:rgba(255,255,255,.12);
+  --text:#eef6ff;
+  --muted:#9eb1c9;
+  --line:rgba(255,255,255,.12);
+  --brand:#6de1ff;
+  --brand2:#8b5cf6;
+  --good:#32d583;
+  --bad:#ff5c7a;
+  --warn:#ffcc66;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;background:
+radial-gradient(circle at 15% 15%,rgba(109,225,255,.26),transparent 28%),
+radial-gradient(circle at 80% 10%,rgba(139,92,246,.28),transparent 28%),
+radial-gradient(circle at 70% 90%,rgba(50,213,131,.12),transparent 28%),
+linear-gradient(135deg,#07111f,#0d1730 55%,#070b14);z-index:-1}
+.hidden{display:none!important}
+.login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-card{width:min(440px,100%);background:rgba(255,255,255,.1);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.45);backdrop-filter:blur(24px)}
+.brand-mark,.logo{width:64px;height:64px;border-radius:22px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;font-weight:900;color:#06101e;box-shadow:0 16px 45px rgba(109,225,255,.25)}
+.login-card h1{font-size:32px;margin:18px 0 8px}
+.login-card p,.side p,.top p{color:var(--muted);margin:0 0 22px}
+input,select{width:100%;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--text);border-radius:14px;padding:14px 16px;margin:8px 0;outline:none}
+button,.download-grid a{border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#06101e;border-radius:14px;padding:13px 16px;font-weight:800;cursor:pointer;text-decoration:none;text-align:center}
+.msg{color:var(--bad);margin-top:12px}
+.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+.side{padding:28px;border-right:1px solid var(--line);background:rgba(0,0,0,.20);backdrop-filter:blur(20px);position:sticky;top:0;height:100vh}
+.side h2{margin:18px 0 4px}
+nav{display:grid;gap:10px;margin-top:26px}
+nav button{background:rgba(255,255,255,.08);color:var(--text);text-align:left}
+nav button.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#06101e}
+.main{padding:28px;min-width:0}
+.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:24px}
+.top h1{font-size:38px;margin:0 0 6px}
+.status-pill{padding:10px 14px;border-radius:999px;background:var(--panel);border:1px solid var(--line);white-space:nowrap}
+.status-pill.ok{color:var(--good)}
+.status-pill.bad{color:var(--bad)}
+.grid.cards{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:16px;margin-bottom:18px}
+.card,.panel,.big-card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.25);backdrop-filter:blur(18px)}
+.card span,.metric-row span,.card small{display:block;color:var(--muted);font-size:13px}
+.card b{font-size:34px;display:block;margin-top:8px}
+.panel h3,.big-card h3{margin:0 0 14px;font-size:22px}
+.table-wrap{overflow:auto;border-radius:18px}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th,td{padding:14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+td small{display:block;color:var(--muted);margin-top:4px}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:rgba(255,255,255,.06)}
+.toolbar{display:flex;gap:12px;margin-bottom:16px}
+.machine-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:16px}
+.big-card{grid-column:span 3}
+.metric-row{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:12px 0}
+.download-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:16px}
+@media(max-width:980px){
+  .app{grid-template-columns:1fr}
+  .side{height:auto;position:relative}
+  .grid.cards,.machine-grid,.download-grid{grid-template-columns:1fr}
+  .big-card{grid-column:span 1}
+  .top{display:block}
+}
