@@ -1,29 +1,35 @@
-﻿# Python
+﻿# Python/cache
 __pycache__/
 *.pyc
-.venv/
-venv/
+.pytest_cache/
 
-# Environment/secrets
+# Secrets/env
 .env
-.env.*
 *.key
 *.pem
 *.pfx
+*.crt
+secrets/
 
-# Logs and temp
-*.log
-*.tmp
-*.bak
-*.zip
-dist/
-build/
-
-# Private live data / customer machine data
+# Runtime DB/logs - do not push live private data
+*.db
+*.db-shm
+*.db-wal
 data/*.db
 data/*.db-shm
 data/*.db-wal
-*.sqlite
-*.sqlite3
+*.log
+logs/
+
+# Backups/build output
 INCREMENTAL_SOURCE_BACKUPS/
-device_test_results/
+backups/
+dist/
+build/
+node_modules/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
