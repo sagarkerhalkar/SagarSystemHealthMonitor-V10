@@ -1,0 +1,17 @@
+﻿V10 MACHINE IDENTITY RULES
+
+1. Live 2278 must not be touched.
+2. V10/2294 only.
+3. One real physical device = one real machine.
+4. If hostname changes, merge old hostname and new hostname when serial/MAC/asset fingerprint is same.
+5. Display latest hostname, but keep all old hostnames in hostnames_seen.
+6. Ignore fake UUID:
+   03000200-0400-0500-0006-000700080009
+7. Ignore fake serial:
+   To be filled by O.E.M
+   Default string
+   System Serial Number
+   00000000
+8. UNKNOWN-HOST with no serial/MAC must not be counted as a real client.
+9. Online/offline is based only on last heartbeat.
+10. Do not hide old real clients.

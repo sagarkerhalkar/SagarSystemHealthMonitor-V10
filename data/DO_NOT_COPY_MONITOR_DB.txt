@@ -1,0 +1,7 @@
+﻿DO NOT COPY monitor.db HERE.
+V10 reads live DB read-only from:
+D:\SagarSystemHealthMonitor\data\monitor.db
+
+Fresh count rule:
+V10_ACTIVE_WINDOW_HOURS=24
+V10_ONLINE_TIMEOUT_MINUTES=2

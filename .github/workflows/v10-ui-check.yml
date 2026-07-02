@@ -1,0 +1,23 @@
+name: V10 UI Static Check
+on:
+  push:
+    paths:
+      - 'public/**'
+      - 'docs/V10_UI_UX_REQUIREMENTS_LOCKED_NEXTTOPPERS.md'
+      - 'V10_IDENTITY_CORE_2294.py'
+      - 'server.py'
+  pull_request:
+    paths:
+      - 'public/**'
+      - 'V10_IDENTITY_CORE_2294.py'
+jobs:
+  ui-static-check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run UI branding responsive static test
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File tests/TEST_V10_UI_BRANDING_RESPONSIVE.ps1 -App "$pwd"
+      - name: Run UI static security test
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File tests/TEST_V10_UI_SECURITY_STATIC.ps1 -App "$pwd"

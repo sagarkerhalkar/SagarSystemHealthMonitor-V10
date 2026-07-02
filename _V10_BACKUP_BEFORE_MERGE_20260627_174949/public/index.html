@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>V10 Command Center | Sagar System Health Monitor</title>
+  <link rel="stylesheet" href="/styles.css?v=v10-1"/>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main id="login" class="login">
+    <section class="login-card">
+      <div class="brand-mark">V10</div>
+      <h1>Sagar System Health Monitor</h1>
+      <p>Clean V10 test build · read-only live DB · 2278 untouched</p>
+      <input id="username" value="admin" autocomplete="username"/>
+      <input id="password" type="password" value="Admin@12345" autocomplete="current-password"/>
+      <button onclick="login()">Login</button>
+      <div id="loginMsg" class="msg"></div>
+    </section>
+  </main>
+
+  <main id="app" class="app hidden">
+    <aside class="side">
+      <div class="logo">V10</div>
+      <div>
+        <h2>Command Center</h2>
+        <p>Read-only test dashboard</p>
+      </div>
+      <nav>
+        <button class="active" onclick="showTab('home')">Home</button>
+        <button onclick="showTab('fleet')">Machine Fleet</button>
+        <button onclick="showTab('machine')">Machine 360</button>
+        <button onclick="showTab('software')">Software Inventory</button>
+        <button onclick="showTab('downloads')">Downloads</button>
+      </nav>
+    </aside>
+
+    <section class="main">
+      <header class="top">
+        <div>
+          <h1>V10 Clean Build</h1>
+          <p>Live 2278 data shown through safe V10 UI. No client change. No DB write.</p>
+        </div>
+        <div class="status-pill" id="health">checking...</div>
+      </header>
+
+      <section id="home" class="tab">
+        <div class="grid cards">
+          <div class="card"><span>Total Systems</span><b id="totalMachines">0</b></div>
+          <div class="card"><span>Online</span><b id="onlineMachines">0</b></div>
+          <div class="card"><span>Critical</span><b id="criticalMachines">0</b></div>
+          <div class="card"><span>Server Internet</span><b id="internetState">checking</b></div>
+        </div>
+        <div class="panel">
+          <h3>Live Fleet Summary</h3>
+          <div id="summaryTable"></div>
+        </div>
+      </section>
+
+      <section id="fleet" class="tab hidden">
+        <div class="toolbar">
+          <input id="search" placeholder="Search hostname, IP, ISP..." oninput="renderFleet()"/>
+          <select id="filter" onchange="renderFleet()">
+            <option value="all">All</option>
+            <option value="online">Online only</option>
+            <option value="offline">Offline only</option>
+          </select>
+        </div>
+        <div id="fleetTable" class="panel"></div>
+      </section>
+
+      <section id="machine" class="tab hidden">
+        <div class="toolbar">
+          <select id="machineSelect" onchange="selectMachine(this.value)"></select>
+        </div>
+        <div id="machine360" class="machine-grid"></div>
+      </section>
+
+      <section id="software" class="tab hidden">
+        <div class="panel">
+          <h3>Software Inventory</h3>
+          <p>This page uses current live payload software count and export route. Full editable software register comes in next V10 module.</p>
+          <div id="softwareTable"></div>
+        </div>
+      </section>
+
+      <section id="downloads" class="tab hidden">
+        <div class="download-grid">
+          <a href="/api/export/machine_current.csv" target="_blank">Download Current Machine CSV</a>
+          <a href="/api/export/software.csv" target="_blank">Download Software CSV</a>
+          <a href="/api/export/usb.csv" target="_blank">Download USB CSV</a>
+          <a href="/api/export/history_daily.csv" target="_blank">Download Day History CSV</a>
+          <a href="/api/export/history_machine.csv" target="_blank">Download Machine History CSV</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/app.js?v=v10-1"></script>
+</body>
+</html>
