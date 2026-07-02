@@ -1,28 +1,18 @@
-﻿param(
-  [string]$Message = ""
-)
-
-$ErrorActionPreference = "Stop"
-$App = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+﻿param([string]$Message = "Auto-save V10 source")
+$ErrorActionPreference = "Continue"
+$App = Split-Path $PSScriptRoot -Parent
 Set-Location $App
 
 $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-if ([string]::IsNullOrWhiteSpace($Message)) {
-  $Message = "autosave: V10 source update $stamp"
-}
-
-if (Test-Path "docs\WORK_LOG.md") {
-  Add-Content "docs\WORK_LOG.md" "`n## $stamp`n- Auto-save commit attempted.`n"
-}
+$workLog = Join-Path $App "docs\V10_WORK_LOG.md"
+if (!(Test-Path (Split-Path $workLog -Parent))) { New-Item -ItemType Directory -Path (Split-Path $workLog -Parent) -Force | Out-Null }
+Add-Content -Path $workLog -Value "`n## $stamp`n$Message`n"
 
 git add .
-$pending = git status --porcelain
-
-if ([string]::IsNullOrWhiteSpace($pending)) {
-  Write-Host "No source changes to commit."
-  exit 0
+$status = git status --porcelain
+if ($status) {
+  git commit -m "$Message"
+  git push
+} else {
+  Write-Host "No Git changes to commit."
 }
-
-git commit -m "$Message"
-git push
-Write-Host "GitHub auto-save pushed."
