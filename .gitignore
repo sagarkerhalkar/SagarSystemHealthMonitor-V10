@@ -33,3 +33,6 @@ node_modules/
 Thumbs.db
 .vscode/
 .idea/
+# V10 protected local/runtime files
+data/monitor*.db
+*.zip
