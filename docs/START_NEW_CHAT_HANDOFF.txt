@@ -1,3 +1,28 @@
-Start of new chat instruction:
+﻿START NEW CHAT HANDOFF â€” V10 SYSTEM HEALTH MONITOR
 
-We are continuing the V10 Next Toppers customer version of Sagar System Health Monitor. Use the attached `V10_LOCKED_REQUIREMENTS_AND_ROADMAP.md` as the source-of-truth. Do not make UI-only patches. Build DB-first, API-second, UI-third. Preserve main 2278. Work only on V10 2294. The prior issue was repeated UI patches overwriting old working logic. The final app must pass the Definition of Done in the locked roadmap.
+Do not start from zero.
+Read these files first:
+
+1. docs/V10_MASTER_SOURCE_OF_TRUTH_FROM_DAY_ZERO.md
+2. docs/LAST_ONE_HOUR_DISCUSSION_AND_DECISIONS.md
+3. docs/V10_DATABASE_REQUIREMENTS_LOCKED.md
+4. docs/V10_ACCEPTANCE_TEST_CHECKLIST.md
+5. docs/V10_DEVELOPMENT_RULES_NO_MORE_PATCH_LOOP.md
+6. docs/V10_GITHUB_AUTOSAVE_RULE.md
+
+Project paths:
+
+- Main stable: D:\SagarSystemHealthMonitor, port 2278. Do not touch unless explicitly asked.
+- V10 development: D:\SagarMonitor_V10_CleanBuild, port 2294.
+- GitHub repo target: sagarkerhalkar/SagarSystemHealthMonitor-V10.
+
+User requirement:
+
+Complete V10 customer web app, not patches. DB first, API second, client payload third, UI fourth, CI/security/rollback fifth. Preserve old working modules and locked notification logic.
+
+Critical rules:
+
+- No UI-only patch.
+- No final claim without checklist.
+- No overwriting old working logic.
+- Commit/push requirements, errors, fixes, and source to GitHub automatically.
