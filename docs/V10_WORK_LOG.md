@@ -541,3 +541,14 @@ Scheduled auto-save V10 source
 ## 2026-07-03 19:47:19
 Auto-save V10 source
 
+
+## 2026-07-03T19:51:42 - Stable selected-machine no-flicker fix
+- Root cause from video: old Fix9 renderer and new 2278 UI were fighting; old 30-second refresh caused flicker.
+- Disabled old auto refresh and stopped old renderer from rewriting Home/Fleet/Machine360/Network/Hardware/Software.
+- Replaced machine-wise UI with no MutationObserver, no auto interval, persistent selected machine, monitor server separated from client machines.
+- 2278 is read-only and not changed.
+
+
+## 2026-07-03 19:57:49
+Scheduled auto-save V10 source
+

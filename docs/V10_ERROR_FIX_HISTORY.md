@@ -185,3 +185,8 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 - Next build locked: V10_SELECTED_MACHINE_UI_ACCEPTANCE_AND_NOTIFICATION_TIMEOUT_FIX.
 - Do not move to ISO until Home, Machine 360, Network + VPN, Hardware Intelligence and Software Intelligence are clean and selected-machine focused.
 - Notification-test timeout must be bounded/cached/non-blocking.
+
+## 2026-07-03T19:51:42 - Video error solution
+Error: Home flickering, server showing as client/default, hardware selected machine not stable.
+Solution: disable old refresh/render conflict; selected-machine UI owns six pages; notification test no longer auto-runs on Home.
+
