@@ -347,3 +347,11 @@ Auto-save V10 source
 ## 2026-07-03 14:57:52
 Scheduled auto-save V10 source
 
+
+## 20260703_151410 - Phase3 Fix6 clean corporate live UI/API correction
+- User rejected Fix4/Fix5 UI: machine selector was in top header, person photo appeared as internal background, color/animation looked confusing, inventory edit was not clear, and live tests failed API shape.
+- Fix6 removes global top machine selector and keeps machine selector inside machine-specific pages only.
+- Fix6 removes team/person photo from internal pages; logo only is shown in header/sidebar/hero. Login background photo is only shown in Settings preview/login requirement.
+- Fix6 adds clear Edit/Delete buttons for Hardware and Software registers and keeps live API only; no dummy rows.
+- Fix6 normalizes hardware inventory API to return both rows and assets arrays.
+- Backup created at D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_20260703_151410.
