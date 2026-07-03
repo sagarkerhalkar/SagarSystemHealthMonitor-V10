@@ -134,3 +134,6 @@ To avoid patch loop, this change only adds DB/API/tests for ISP/WAN settings bef
 
 ## 20260703_174048 - Prevention note
 This patch only adds Home traffic KPI API/UI. It does not change 2278 and does not replace the full V10 UI.
+
+## 20260703_175628 - 2278 API 401 explained
+2278 /api/clients, /api/machines, /api/latest, /api/notifications, /api/notification-rules can return 401 because login is required. This is not a V10 connector failure. V10 reads the DB read-only instead.

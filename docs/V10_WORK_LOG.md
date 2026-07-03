@@ -440,3 +440,10 @@ Scheduled auto-save V10 source
 ## 2026-07-03 17:47:17
 Auto-save V10 source
 
+
+## 20260703_175628 - 2278 read-only live source connector
+- Added V10 connector to read working 2278 DB in SQLite read-only mode.
+- 2278 HTTP APIs may show 401 due login; V10 now reads D:\SagarSystemHealthMonitor\data\monitor.db without writing.
+- Added machine, traffic KPI, notifications, and notification simulation endpoints.
+- 2278 was not modified and not restarted by this package.
+- Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\BEFORE_2278_READONLY_SOURCE_20260703_175628
