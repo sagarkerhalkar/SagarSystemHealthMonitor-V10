@@ -2078,6 +2078,21 @@ try:
 except Exception as _v10fix8_e:
     print("V10_PHASE3_FIX8_CUSTOMER_UI_ROUTER_USER_NOTIFY_FAILED", _v10fix8_e)
 # === V10_PHASE3_FIX8_CUSTOMER_UI_HOOK_END ===
+
+
+# === V10_PHASE3_FIX9_REQUIREMENT_LOCK_HOOK_START ===
+try:
+    import importlib.util as _v10fix9_util
+    from pathlib import Path as _v10fix9_path
+    _v10fix9_file = _v10fix9_path(BASE_DIR) / "v10_phase3_fix9_requirement_lock_api.py"
+    _v10fix9_spec = _v10fix9_util.spec_from_file_location("v10_phase3_fix9_requirement_lock_api", str(_v10fix9_file))
+    _v10fix9_mod = _v10fix9_util.module_from_spec(_v10fix9_spec)
+    _v10fix9_spec.loader.exec_module(_v10fix9_mod)
+    _v10fix9_mod.install(Handler, BASE_DIR, load_latest)
+    print("V10_PHASE3_FIX9_REQUIREMENT_LOCK_LIVE_UI_LOADED")
+except Exception as _v10fix9_e:
+    print("V10_PHASE3_FIX9_CUSTOMER_UI_ROUTER_USER_NOTIFY_FAILED", _v10fix9_e)
+# === V10_PHASE3_FIX9_REQUIREMENT_LOCK_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -2096,6 +2111,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
