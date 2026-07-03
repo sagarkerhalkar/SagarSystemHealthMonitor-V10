@@ -3959,6 +3959,20 @@ except Exception as _v10notifff_e:
     print("V10_NOTIFICATION_TEST_FAST_SAFE_FIX_FAILED", _v10notifff_e)
 # === V10_NOTIFICATION_TEST_FAST_SAFE_FIX_HOOK_END ===
 
+# === V10_SELECTED_MACHINE_DATA_CONTRACT_HOOK_START ===
+try:
+    import importlib.util as _v10sel_util
+    from pathlib import Path as _v10sel_path
+    _v10sel_file = _v10sel_path(BASE_DIR) / "v10_selected_machine_contract_api.py"
+    _v10sel_spec = _v10sel_util.spec_from_file_location("v10_selected_machine_contract_api", str(_v10sel_file))
+    _v10sel_mod = _v10sel_util.module_from_spec(_v10sel_spec)
+    _v10sel_spec.loader.exec_module(_v10sel_mod)
+    _v10sel_mod.install(Handler, BASE_DIR)
+    print("V10_SELECTED_MACHINE_DATA_CONTRACT_LOADED")
+except Exception as _v10sel_e:
+    print("V10_SELECTED_MACHINE_DATA_CONTRACT_FAILED", _v10sel_e)
+# === V10_SELECTED_MACHINE_DATA_CONTRACT_HOOK_END ===
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0")
@@ -3985,6 +3999,7 @@ if __name__ == "__main__":
 
 # === V10_NEXTTOPPERS_UI_FIX2_REALDATA_SOURCE_LOCK ===
 # UI Fix2: readability, deploy center, active notifications, settings retention days. Main 2278 untouched.
+
 
 
 

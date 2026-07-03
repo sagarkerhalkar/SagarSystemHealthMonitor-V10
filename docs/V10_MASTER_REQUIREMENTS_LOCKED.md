@@ -49,3 +49,7 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 - Next build locked: V10_SELECTED_MACHINE_UI_ACCEPTANCE_AND_NOTIFICATION_TIMEOUT_FIX.
 - Do not move to ISO until Home, Machine 360, Network + VPN, Hardware Intelligence and Software Intelligence are clean and selected-machine focused.
 - Notification-test timeout must be bounded/cached/non-blocking.
+
+## 2026-07-03T20:11:27 - Selected-machine rule locked
+Every machine detail page must use machine_id. If machine_id is selected, hardware/software/network must return the same machine_id. Server health must be separate from client machine data. Do not move to ISO until this passes.
+

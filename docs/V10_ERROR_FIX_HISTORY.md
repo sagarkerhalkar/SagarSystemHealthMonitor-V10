@@ -190,3 +190,8 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 Error: Home flickering, server showing as client/default, hardware selected machine not stable.
 Solution: disable old refresh/render conflict; selected-machine UI owns six pages; notification test no longer auto-runs on Home.
 
+
+## 2026-07-03T20:11:27 - Video loop error root cause
+Error: selected hostname/query ignored and UI returned current/default machine; server treated as client; old renderer kept conflicting.
+Solution: add selected-machine contract endpoints and UI binding; request machine_id strictly and verify returned_machine_id equals requested.
+

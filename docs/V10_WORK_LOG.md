@@ -552,3 +552,16 @@ Auto-save V10 source
 ## 2026-07-03 19:57:49
 Scheduled auto-save V10 source
 
+
+## 2026-07-03T20:11:27 - Selected-machine data contract fix
+- Reapplied morning working 2278 read-only logic with strict selected machine_id contract.
+- Fixed query= alias that was ignored by old endpoint.
+- Home separates monitor server from client machines.
+- Machine 360 / Network + VPN / Hardware Intelligence / Software Intelligence use same selected machine.
+- 2278 and client collection not changed.
+- Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\BEFORE_SELECTED_MACHINE_DATA_CONTRACT_20260703_201127
+
+
+## 2026-07-03 20:17:10
+Auto-save V10 source
+
