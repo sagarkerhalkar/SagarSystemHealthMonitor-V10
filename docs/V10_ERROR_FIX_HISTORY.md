@@ -121,3 +121,7 @@ Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE
 
 ## 20260703_172740 - Prevention note
 To avoid patch loop, this change only adds DB/API/tests for ISP/WAN settings before UI integration.
+
+## 2026-07-03 17:32:52
+- Requirement update: after ISP/WAN DB/API test pass, added UI phase for 1-10 ISP links in Settings and Home status. No dummy ISP speed; not from clients.
+
