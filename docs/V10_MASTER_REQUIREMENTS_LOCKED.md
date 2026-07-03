@@ -34,3 +34,9 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 - Machine-wise tabs must be selected-machine views, not fleet views.
 - 2278 remains read-only source of truth.
 - No old/new duplicate UI sections.
+
+## 2026-07-03 19:33:33 â€” Requirement lock from video
+- Do not proceed to ISO until Home, Machine Fleet, Machine 360, Network + VPN, Hardware Intelligence, Software Intelligence are accepted.
+- Machine-wise tabs must be selected-machine views, not fleet views.
+- 2278 remains read-only source of truth.
+- No old/new duplicate UI sections.
