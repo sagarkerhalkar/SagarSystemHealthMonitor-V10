@@ -145,3 +145,7 @@ This patch only adds Home traffic KPI API/UI. It does not change 2278 and does n
 ## 20260703_181756 - Software Intelligence next step after hardware pass
 Hardware read-only source passed with live machines. Software source now added read-only. PowerShell System.Object[] output is display formatting, not API failure. Missing serial/software list means client payload did not report those values.
 
+
+## 20260703_185203 - Duplicate UI issue fixed path
+- Previous pages showed old V10 cards plus new 2278 section, making progress look like zero. This patch does not add new backend logic; it binds verified data to existing tabs and removes duplicate panel rendering from user-facing tabs.
+
