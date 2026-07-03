@@ -528,3 +528,12 @@ Scheduled auto-save V10 source
 - UI binding failure recorded in docs/V10_20260703_UI_BINDING_FAILURE_FROM_VIDEO.md.
 - Notification timeout error/solution recorded in docs/V10_20260703_NOTIFICATION_TIMEOUT_ERROR_SOLUTION.md.
 - No runtime code changed by this push pack.
+
+## 2026-07-03 19:38:51 - Video error next solution locked
+
+- Video shows core issue is not backend source, but mixed/duplicated UI binding.
+- 2278 read-only source remains source of truth.
+- Do not touch 2278 or client.
+- Next build locked: V10_SELECTED_MACHINE_UI_ACCEPTANCE_AND_NOTIFICATION_TIMEOUT_FIX.
+- Do not move to ISO until Home, Machine 360, Network + VPN, Hardware Intelligence and Software Intelligence are clean and selected-machine focused.
+- Notification-test timeout must be bounded/cached/non-blocking.

@@ -40,3 +40,12 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 - Machine-wise tabs must be selected-machine views, not fleet views.
 - 2278 remains read-only source of truth.
 - No old/new duplicate UI sections.
+
+## 2026-07-03 19:38:51 - Video error next solution locked
+
+- Video shows core issue is not backend source, but mixed/duplicated UI binding.
+- 2278 read-only source remains source of truth.
+- Do not touch 2278 or client.
+- Next build locked: V10_SELECTED_MACHINE_UI_ACCEPTANCE_AND_NOTIFICATION_TIMEOUT_FIX.
+- Do not move to ISO until Home, Machine 360, Network + VPN, Hardware Intelligence and Software Intelligence are clean and selected-machine focused.
+- Notification-test timeout must be bounded/cached/non-blocking.
