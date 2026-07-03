@@ -53,3 +53,9 @@ Fix:
 Error: /api/health was reachable but the test failed because the response shape was different and PowerShell displayed byte values.
 Root cause: test was too strict. Health endpoint should prove server reachability only. Phase 1 readiness must be checked with /api/v10final/status and related /api/v10final/* endpoints.
 Fix: replaced 	ests/TEST_V10_2DAY_PHASE1_DB_API_BRIDGE.ps1 with a byte-array tolerant test that accepts any HTTP 2xx health response, decodes byte arrays to UTF-8 text, and then verifies Phase 1 APIs.
+
+## 20260703_131815 - Phase 2 mapping fix
+Problem:
+- Disk/GPU/USB/software/network/VPN values were missing or mapped as zero even when client payload contained data.
+Fix:
+- Added a server-side payload normalizer and reprocessor so UI/API receive consistent arrays and counts.
