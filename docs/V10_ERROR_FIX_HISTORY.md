@@ -118,3 +118,6 @@ Problem:
 Solution:
 - Apply Fix9 customer UI: no GitHub button in UI, original logo visible, router ISP table/form from DB, Settings upload controls, User / Role Management, password reset, notification rule controls, ISO evidence rule, live API only.
 Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE3_FIX9_REQUIREMENT_LOCK_LIVE_UI_20260703_163214
+
+## 20260703_172740 - Prevention note
+To avoid patch loop, this change only adds DB/API/tests for ISP/WAN settings before UI integration.

@@ -415,3 +415,10 @@ Scheduled auto-save V10 source
 ## 2026-07-03 17:17:09
 Auto-save V10 source
 
+
+## 20260703_172740 - ISP/WAN Settings DB/API
+- Locked requirement: Settings can add 1 to 10 ISP/WAN links per organization.
+- Added DB tables router_wan_links and router_probe_history.
+- Added API endpoints for ISP/WAN CRUD, sample CSV, export CSV, and automatic gateway/Cloudflare status probe.
+- ISP data is not taken from client machine payload.
+- Per-WAN speed is not faked; it requires router API/SNMP/Omada feed or routed WAN probe.
