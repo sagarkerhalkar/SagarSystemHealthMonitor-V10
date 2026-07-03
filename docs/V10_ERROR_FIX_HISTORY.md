@@ -70,3 +70,9 @@ Fix:
 - Selftest now runs isolated sample data through the Phase2 normalizer only.
 - Test script now prints ailed_checks, checks, and summary before throwing.
 - Conversation/error log doc added.
+
+## 20260703_133723 - Phase 3 prevention
+Problem:
+- User reported old UI changes were not connected to live server data and every tab felt generic.
+Fix:
+- Phase 3 UI now reads live /api/v10final/* data, does not use dummy data, and separates every tab by function.
