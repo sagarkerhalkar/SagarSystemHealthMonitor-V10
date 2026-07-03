@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Sagar Kerhalkar System Monitor Tool - zero dependency receiver + premium dashboard.
 Runs with Python standard library only.
@@ -3754,6 +3754,21 @@ except Exception as _hcl_e:
     print("HISTORY_CACHE_LITE_FAILED", _hcl_e)
 # === HISTORY_CACHE_LITE_HOOK_END ===
 
+
+
+# === V10_2DAY_PHASE1_DB_API_BRIDGE_HOOK_START ===
+try:
+    import importlib.util as _v10final_util
+    from pathlib import Path as _v10final_path
+    _v10final_file = _v10final_path(BASE_DIR) / "v10_final_bridge.py"
+    _v10final_spec = _v10final_util.spec_from_file_location("v10_final_bridge", str(_v10final_file))
+    _v10final_mod = _v10final_util.module_from_spec(_v10final_spec)
+    _v10final_spec.loader.exec_module(_v10final_mod)
+    _v10final_mod.install(Handler, BASE_DIR, load_latest)
+    print("V10_2DAY_PHASE1_DB_API_BRIDGE_LOADED")
+except Exception as _v10final_e:
+    print("V10_2DAY_PHASE1_DB_API_BRIDGE_FAILED", _v10final_e)
+# === V10_2DAY_PHASE1_DB_API_BRIDGE_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -3781,3 +3796,4 @@ if __name__ == "__main__":
 
 # === V10_NEXTTOPPERS_UI_FIX2_REALDATA_SOURCE_LOCK ===
 # UI Fix2: readability, deploy center, active notifications, settings retention days. Main 2278 untouched.
+
