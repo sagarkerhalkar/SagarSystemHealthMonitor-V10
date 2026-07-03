@@ -3931,6 +3931,20 @@ except Exception as _v10hw2278_e:
     print("V10_HARDWARE_TAB_2278_READONLY_LIVE_FAILED", _v10hw2278_e)
 # === V10_HARDWARE_2278_READONLY_HOOK_END ===
 
+# === V10_SOFTWARE_2278_READONLY_HOOK_START ===
+try:
+    import importlib.util as _v10sw2278_util
+    from pathlib import Path as _v10sw2278_path
+    _v10sw2278_file = _v10sw2278_path(BASE_DIR) / "v10_software_2278_readonly_api.py"
+    _v10sw2278_spec = _v10sw2278_util.spec_from_file_location("v10_software_2278_readonly_api", str(_v10sw2278_file))
+    _v10sw2278_mod = _v10sw2278_util.module_from_spec(_v10sw2278_spec)
+    _v10sw2278_spec.loader.exec_module(_v10sw2278_mod)
+    _v10sw2278_mod.install(Handler, BASE_DIR)
+    print("V10_SOFTWARE_TAB_2278_READONLY_LIVE_LOADED")
+except Exception as _v10sw2278_e:
+    print("V10_SOFTWARE_TAB_2278_READONLY_LIVE_FAILED", _v10sw2278_e)
+# === V10_SOFTWARE_2278_READONLY_HOOK_END ===
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0")
@@ -3957,6 +3971,7 @@ if __name__ == "__main__":
 
 # === V10_NEXTTOPPERS_UI_FIX2_REALDATA_SOURCE_LOCK ===
 # UI Fix2: readability, deploy center, active notifications, settings retention days. Main 2278 untouched.
+
 
 
 
