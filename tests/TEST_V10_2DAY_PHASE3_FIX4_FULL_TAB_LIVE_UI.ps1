@@ -1,4 +1,3 @@
-
 param([string]$BaseUrl="http://127.0.0.1:2294")
 $ErrorActionPreference="Stop"
 Write-Host "=== V10 Phase3 Fix4 Full Tab Requirements Live UI Test ===" -ForegroundColor Cyan
