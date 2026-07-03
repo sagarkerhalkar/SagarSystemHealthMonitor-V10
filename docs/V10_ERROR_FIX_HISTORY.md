@@ -170,3 +170,9 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 - Hardware source and software source passed before timeout.
 - Video shows UI still too long/duplicate and selected-machine tabs not clean.
 - Solution: notification endpoint must be optimized; UI must replace old sections, not append new ones.
+
+## 2026-07-03 19:33:33 â€” Latest error from test/video
+- TEST_V10_MACHINEWISE_2278_UI_CLEAN.ps1 timed out at /api/v10/source2278/notification-test.
+- Hardware source and software source passed before timeout.
+- Video shows UI still too long/duplicate and selected-machine tabs not clean.
+- Solution: notification endpoint must be optimized; UI must replace old sections, not append new ones.
