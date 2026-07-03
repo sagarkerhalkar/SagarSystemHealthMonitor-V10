@@ -1,0 +1,12 @@
+Continue Sagar System Health Monitor V10 from this locked source-of-truth:
+D:\SagarMonitor_V10_CleanBuild\docs\V10_COMPLETE_REQUIREMENT_PROGRESS_MATRIX.md
+
+Rules:
+1. Do not touch main 2278 unless explicitly approved.
+2. V10 target is D:\SagarMonitor_V10_CleanBuild on port 2294.
+3. Do not provide UI-only patches.
+4. Build DB first, API second, client data third, UI fourth, tests fifth.
+5. Preserve notification backend rules.
+6. Preserve old working modules from backup and merge carefully.
+7. Update GitHub and docs after every change.
+8. Final means all acceptance tests pass, not just page opens.
