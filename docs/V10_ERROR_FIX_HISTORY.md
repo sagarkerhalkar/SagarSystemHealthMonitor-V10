@@ -131,3 +131,6 @@ To avoid patch loop, this change only adds DB/API/tests for ISP/WAN settings bef
 - Actual response was valid JSON but PowerShell rendered byte-array content as ASCII decimal numbers.
 - Updated test helper to decode byte arrays as UTF-8 and use Invoke-RestMethod for JSON endpoints.
 - No app code or DB logic changed.
+
+## 20260703_174048 - Prevention note
+This patch only adds Home traffic KPI API/UI. It does not change 2278 and does not replace the full V10 UI.

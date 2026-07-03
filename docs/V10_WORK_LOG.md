@@ -430,3 +430,9 @@ Scheduled auto-save V10 source
 ## 2026-07-03 17:32:52
 - Added ISP/WAN Manager UI in Settings and ISP/WAN status panel on Home, using live ISP/WAN API only. Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\BEFORE_ISP_WAN_UI_20260703_173252
 
+
+## 20260703_174048 - Home Traffic KPI live panel
+- Added Home / Command Center KPIs: Today Download, Today Upload, Current Download, Current Upload.
+- Source is live latest client traffic from data\monitor_v10_notify.db, no dummy data.
+- Added API /api/v10/home/traffic-kpi and CSV export.
+- Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\BEFORE_HOME_TRAFFIC_KPI_20260703_174048
