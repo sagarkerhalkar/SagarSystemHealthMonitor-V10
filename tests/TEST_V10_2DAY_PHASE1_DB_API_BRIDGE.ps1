@@ -106,7 +106,7 @@ foreach ($ep in $endpoints) {
   $r = Invoke-JsonGet $ep
   Assert-Reachable $ep $r
   if ($null -eq $r.json) {
-    Write-Host "RAW RESPONSE for $ep:" -ForegroundColor Yellow
+    Write-Host "RAW RESPONSE for ${ep}:" -ForegroundColor Yellow
     Write-Host $r.raw
     throw "$ep returned non-JSON"
   }
@@ -115,3 +115,4 @@ foreach ($ep in $endpoints) {
 
 Write-Host "=== PHASE 1 BASIC DB/API BRIDGE TEST PASSED ===" -ForegroundColor Green
 Write-Host "Next: run deeper CRUD/API tests after confirming this basic bridge is loaded." -ForegroundColor Cyan
+
