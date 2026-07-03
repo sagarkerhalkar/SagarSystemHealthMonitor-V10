@@ -479,3 +479,18 @@ Auto-save V10 source
 ## 2026-07-03 18:57:49
 Scheduled auto-save V10 source
 
+
+## 2026-07-03T19:07:15 - Machine-wise 2278 UI clean binding
+- Home compacted; no long duplicate page.
+- Machine 360, Network + VPN, Hardware Intelligence, Software Intelligence bound machine-wise to 2278 read-only source.
+- Old duplicate cards replaced in those tabs.
+- 2278 not changed; client logic not changed.
+
+
+## 20260703_191424 - Notification test timeout safe fix
+- Hardware/software source and machine-wise UI test were passing.
+- Only /api/v10/source2278/notification-test timed out in the test.
+- Added fast cached read-only notification evaluator for the same endpoint.
+- Updated machine-wise test to use 60 second timeout for notification check.
+- No UI redesign. No 2278 change. No client change. No CPU/RAM/GPU/disk/network logic change.
+- Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\BEFORE_NOTIFICATION_FAST_FIX_20260703_191424
