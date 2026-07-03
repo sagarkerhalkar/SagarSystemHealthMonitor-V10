@@ -82,3 +82,11 @@ Problem:
 - Previous UI still used team photo in visible hero, name was too big, tabs were not fully requirement-wise, large tables scrolled too much, and every tab did not clearly include footer/CSV/import/live test requirement.
 Fix:
 - Phase3 Fix4 stores the expanded tab-wise requirements and adds UI/API controls for ISO, USB, Day History, Messages, Notifications, Deploy, Settings, imports, exports and live-data testing.
+
+## 20260703_145308 - machines api missing machines array
+Error:
+machines api missing machines array
+Root cause:
+The live endpoint was reachable, but the response shape was not standardized for the Phase3 UI/test. The UI needs a stable machines array for Machine Fleet, Command Center click-through, issue filters and Machine 360 navigation.
+Fix:
+Phase3 Fix5 normalizes /api/v10final/machines to always return machines array plus counts and issue status from live latest data. It does not fake hardware/software/GPU/disk data.
