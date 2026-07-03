@@ -76,3 +76,9 @@ Problem:
 - User reported old UI changes were not connected to live server data and every tab felt generic.
 Fix:
 - Phase 3 UI now reads live /api/v10final/* data, does not use dummy data, and separates every tab by function.
+
+## 20260703_144050 - UI requirement correction
+Problem:
+- Previous UI still used team photo in visible hero, name was too big, tabs were not fully requirement-wise, large tables scrolled too much, and every tab did not clearly include footer/CSV/import/live test requirement.
+Fix:
+- Phase3 Fix4 stores the expanded tab-wise requirements and adds UI/API controls for ISO, USB, Day History, Messages, Notifications, Deploy, Settings, imports, exports and live-data testing.
