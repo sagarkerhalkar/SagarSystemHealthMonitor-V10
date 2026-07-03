@@ -1988,6 +1988,21 @@ try:
 except Exception as _v10final_e:
     print("V10_2DAY_PHASE1_DB_API_BRIDGE_FAILED", _v10final_e)
 # === V10_2DAY_PHASE1_DB_API_BRIDGE_HOOK_END ===
+
+
+# === V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_HOOK_START ===
+try:
+    import importlib.util as _v10p2_util
+    from pathlib import Path as _v10p2_path
+    _v10p2_file = _v10p2_path(BASE_DIR) / "v10_phase2_payload_normalizer.py"
+    _v10p2_spec = _v10p2_util.spec_from_file_location("v10_phase2_payload_normalizer", str(_v10p2_file))
+    _v10p2_mod = _v10p2_util.module_from_spec(_v10p2_spec)
+    _v10p2_spec.loader.exec_module(_v10p2_mod)
+    _v10p2_mod.install(globals())
+    print("V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_LOADED")
+except Exception as _v10p2_e:
+    print("V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_FAILED", _v10p2_e)
+# === V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -2006,5 +2021,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 

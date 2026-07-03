@@ -280,3 +280,12 @@ Scheduled auto-save V10 source
 ## 2026-07-03 13:17:09
 Auto-save V10 source
 
+
+## 20260703_131815 - V10 2-Day Phase 2 client payload normalizer applied
+- Applied V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER.
+- Added normalization for CPU name/cores/temp, RAM used/free/total, SSD/HDD/NVMe disk usage, GPU name/memory/temp, installed software count/list, USB/peripherals, IP/MAC/adapters, VPN, latency/jitter/loss and daily/current traffic.
+- Existing latest rows are reprocessed safely on startup without deleting DB data.
+- Added endpoints /api/v10phase2/status, /api/v10phase2/selftest and /api/v10phase2/reprocess.
+- Added test tests/TEST_V10_2DAY_PHASE2_CLIENT_PAYLOAD.ps1.
+- Main 2278 not touched.
+- Backup created at D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_20260703_131815.
