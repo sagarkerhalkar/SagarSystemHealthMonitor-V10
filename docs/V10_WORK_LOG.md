@@ -289,3 +289,10 @@ Auto-save V10 source
 - Added test tests/TEST_V10_2DAY_PHASE2_CLIENT_PAYLOAD.ps1.
 - Main 2278 not touched.
 - Backup created at D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_20260703_131815.
+
+## 20260703_132330 - Phase 2 fix v4 applied
+- User reported Phase2 selftest failed even though normalized payload showed CPU/RAM/disk/GPU/software/USB/network data.
+- Fixed 10_phase2_payload_normalizer.py selftest to run isolated from old server hooks.
+- Replaced Phase2 test with v4 that prints exact failed checks.
+- Stored conversation/error/solution log in docs/V10_CONVERSATION_AND_ERROR_LOG_20260703.md.
+- Backup created at D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE2_FIX4_SELFTEST_AND_GITHUB_LOG_20260703_132330.
