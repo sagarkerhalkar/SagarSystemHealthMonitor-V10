@@ -8,3 +8,7 @@ V10 must read 2278 live data in read-only mode first, then test notifications, t
 ## 20260703_180848 - Hardware tab locked implementation path
 Hardware tab must read live hardware details from 2278 read-only source first: CPU, RAM, disk, GPU, USB, network, software count, serial/BIOS/motherboard serial when reported. Missing fields must show Not reported by client, not fake values. CSV download required. Notification test must remain working.
 
+
+## 20260703_181756 - Software Intelligence locked implementation path
+Software Intelligence must read installed software from 2278 read-only source first, machine-wise. It must show full installed list when client reports it, otherwise show count-only / Not reported by client. No fake software rows. CSV export and sample software CSV required.
+
