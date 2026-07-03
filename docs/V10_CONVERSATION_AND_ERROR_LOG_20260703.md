@@ -27,3 +27,6 @@ Every apply package must:
 3. Run syntax checks.
 4. Commit and push to GitHub if git remote exists.
 5. Provide rollback script if production behavior changes.
+
+## 20260703_172740 - ISP/WAN Settings DB/API added
+User requested admin-managed ISP details in Settings, maximum 10 ISP links. Implemented DB/API first and not UI patching.
