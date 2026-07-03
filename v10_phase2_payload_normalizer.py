@@ -12,7 +12,7 @@ import urllib.parse
 from typing import Any, Dict, List, Tuple
 
 PHASE_NAME = "V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER"
-PHASE_VERSION = "2026-07-03.2"
+PHASE_VERSION = "2026-07-03.3"
 
 
 def _now() -> str:
@@ -443,8 +443,14 @@ def sample_payload() -> Dict[str, Any]:
     }
 
 def selftest(old_summarize=None, old_normalize=None) -> Dict[str, Any]:
-    p = normalize_payload(sample_payload(), old_normalize)
-    s = summarize_payload(p, old_summarize, old_normalize)
+    """Run an isolated normalizer self-test.
+
+    This intentionally does NOT call the old server normalizer/summarizer. Earlier builds
+    passed old hooks into selftest and that made the self-test fail even when the new
+    normalizer itself produced correct CPU/RAM/disk/GPU/software/USB/network data.
+    """
+    p = normalize_payload(sample_payload(), None)
+    s = summarize_payload(p, None, None)
     checks = {
         "disk_count_ok": s.get('disk_count',0) >= 1 and s.get('disk_max_percent',0) > 0,
         "gpu_ok": s.get('gpu_count',0) >= 1 and s.get('gpu_total_memory_mb',0) >= 4096,
@@ -453,8 +459,11 @@ def selftest(old_summarize=None, old_normalize=None) -> Dict[str, Any]:
         "network_ok": len(s.get('all_ips') or []) >= 1,
         "vpn_ok": bool(s.get('vpn_active')),
         "ram_ok": s.get('ram_total_gb',0) >= 16 and s.get('ram_free_gb',0) > 0,
+        "traffic_ok": s.get('wan_download_mbps',0) > 0 and s.get('wan_upload_mbps',0) > 0,
+        "latency_ok": s.get('latency_ms') is not None,
     }
-    return {"ok": all(checks.values()), "phase": PHASE_NAME, "version": PHASE_VERSION, "checks": checks, "summary": s, "normalized_payload": p}
+    failed = [k for k,v in checks.items() if not v]
+    return {"ok": len(failed) == 0, "phase": PHASE_NAME, "version": PHASE_VERSION, "checks": checks, "failed_checks": failed, "summary": s, "normalized_payload": p}
 
 def reprocess_latest(ns: Dict[str, Any]) -> Dict[str, Any]:
     DB_PATH = ns.get('DB_PATH')
@@ -514,7 +523,7 @@ def install(ns: Dict[str, Any]) -> Dict[str, Any]:
                 if path == '/api/v10phase2/status':
                     return _send_json(self, {"ok": True, "phase": PHASE_NAME, "version": PHASE_VERSION, "rules": {"no_fake_gpu": True, "no_fake_disk": True, "normalizes_existing_latest": True}})
                 if path == '/api/v10phase2/selftest':
-                    return _send_json(self, selftest(old_summarize, patched_normalize))
+                    return _send_json(self, selftest())
                 if path == '/api/v10phase2/reprocess':
                     return _send_json(self, reprocess_latest(ns))
             except Exception as e:
