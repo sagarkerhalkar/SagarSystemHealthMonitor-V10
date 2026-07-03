@@ -8,8 +8,6 @@ git fetch origin main | Out-Null
 $remote=(git rev-parse origin/main).Trim()
 Write-Host "Local HEAD : $local"
 Write-Host "Remote main: $remote"
-if($local -eq $remote){ Write-Host "PUSHED OK: local source and GitHub main are same commit." -ForegroundColor Green } else { Write-Host "NOT PUSHED: local and remote differ." -ForegroundColor Red }
-Write-Host "`nLast 5 local commits:"
-git log -5 --oneline --decorate
-Write-Host "`nFiles not committed locally:"
-git status --short
+if($local -eq $remote){ Write-Host "PUSHED OK: local source and GitHub main are same commit." -ForegroundColor Green; exit 0 }
+Write-Host "NOT PUSHED: local and remote differ." -ForegroundColor Red
+exit 1
