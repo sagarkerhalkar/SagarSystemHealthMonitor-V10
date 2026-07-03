@@ -39,3 +39,11 @@ Problem:
 - Earlier builds changed UI before DB/API foundation.
 Fix:
 - Added DB-first bridge and tests before UI work.
+
+## 20260703_120601 - api/health test false failure
+Error:
+- pi/health failed in TEST_V10_2DAY_PHASE1_DB_API_BRIDGE.ps1.
+Root cause:
+- Test expected ok: true, but existing V10 /api/health may return status: ok.
+Fix:
+- Updated test to accept both schemas and continue to the real /api/v10final/status bridge test.

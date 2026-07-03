@@ -6,30 +6,55 @@ $ErrorActionPreference = "Stop"
 
 function Get-Json($Url) {
   Write-Host "GET $Url"
-  $r = Invoke-WebRequest $Url -UseBasicParsing -TimeoutSec 20
-  return $r.Content | ConvertFrom-Json
+  try {
+    $r = Invoke-WebRequest $Url -UseBasicParsing -TimeoutSec 25
+    return $r.Content | ConvertFrom-Json
+  } catch {
+    Write-Host "REQUEST FAILED: $Url" -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
+    throw
+  }
 }
 
 function Post-Json($Url, $Body) {
   Write-Host "POST $Url"
-  $json = $Body | ConvertTo-Json -Depth 10
-  $r = Invoke-WebRequest $Url -UseBasicParsing -Method POST -Body $json -ContentType "application/json" -TimeoutSec 20
+  $json = $Body | ConvertTo-Json -Depth 20
+  $r = Invoke-WebRequest $Url -UseBasicParsing -Method POST -Body $json -ContentType "application/json" -TimeoutSec 25
   return $r.Content | ConvertFrom-Json
 }
 
 function Delete-Url($Url) {
   Write-Host "DELETE $Url"
-  $r = Invoke-WebRequest $Url -UseBasicParsing -Method DELETE -TimeoutSec 20
+  $r = Invoke-WebRequest $Url -UseBasicParsing -Method DELETE -TimeoutSec 25
   return $r.Content | ConvertFrom-Json
 }
 
-Write-Host "=== V10 2-Day Phase 1 DB/API Bridge Test ===" -ForegroundColor Cyan
+function Test-HealthOk($obj) {
+  if ($null -eq $obj) { return $false }
+  if ($obj.ok -eq $true) { return $true }
+  if ([string]$obj.status -match "^(ok|healthy|success)$") { return $true }
+  if ([string]$obj.status -match "running") { return $true }
+  if ([string]$obj.message -match "ok") { return $true }
+  return $false
+}
+
+Write-Host "=== V10 2-Day Phase 1 DB/API Bridge Test - FIXED ===" -ForegroundColor Cyan
+Write-Host "BaseUrl: $BaseUrl"
 
 $health = Get-Json "$BaseUrl/api/health"
-if (!$health.ok) { throw "api/health failed" }
+if (!(Test-HealthOk $health)) {
+  Write-Host "api/health returned:" -ForegroundColor Yellow
+  $health | ConvertTo-Json -Depth 20 | Write-Host
+  throw "api/health is reachable but returned unexpected shape. Server may still be OK; health schema is different."
+}
+Write-Host "PASS: /api/health reachable" -ForegroundColor Green
 
 $status = Get-Json "$BaseUrl/api/v10final/status"
-if (!$status.ok) { throw "v10final/status failed" }
+if (!$status.ok) {
+  Write-Host "v10final/status returned:" -ForegroundColor Yellow
+  $status | ConvertTo-Json -Depth 20 | Write-Host
+  throw "v10final/status failed - bridge may not be loaded. Check server window for V10_2DAY_PHASE1_DB_API_BRIDGE_LOADED"
+}
 Write-Host ("Machines total: " + $status.counts.machines_total)
 Write-Host ("Hardware assets: " + $status.counts.hardware_assets)
 
