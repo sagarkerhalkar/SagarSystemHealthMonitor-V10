@@ -28,3 +28,9 @@ The full conversation/progress/error/solution report was added to docs:
 - V10_20260703_HANDOFF_FOR_NEXT_DEVELOPER.md
 
 Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to ISO until Home, Machine Fleet, Machine 360, Network + VPN, Hardware Intelligence and Software Intelligence are accepted.
+
+## 2026-07-03 19:33:18 â€” Requirement lock from video
+- Do not proceed to ISO until Home, Machine Fleet, Machine 360, Network + VPN, Hardware Intelligence, Software Intelligence are accepted.
+- Machine-wise tabs must be selected-machine views, not fleet views.
+- 2278 remains read-only source of truth.
+- No old/new duplicate UI sections.

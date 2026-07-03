@@ -514,3 +514,10 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 ## 2026-07-03 19:27:49
 Scheduled auto-save V10 source
 
+
+## 2026-07-03 19:33:18 â€” Video Error / Progress Checkpoint
+- Latest video issue recorded in docs/V10_20260703_VIDEO_ERROR_LOG_AND_NEXT_STEP.md.
+- Current accepted progress locked in docs/V10_20260703_CURRENT_PROGRESS_LOCKED_BEFORE_ISO.md.
+- UI binding failure recorded in docs/V10_20260703_UI_BINDING_FAILURE_FROM_VIDEO.md.
+- Notification timeout error/solution recorded in docs/V10_20260703_NOTIFICATION_TIMEOUT_ERROR_SOLUTION.md.
+- No runtime code changed by this push pack.
