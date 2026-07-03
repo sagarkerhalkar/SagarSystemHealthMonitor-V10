@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>V10 System Health Monitor</title>
-  <link rel="stylesheet" href="/v10_phase3_clean.css?v=20260703fix6" />
+  <title>Sagar · System Health Monitor V10</title>
+  <link rel="stylesheet" href="/v10_phase3_global.css?v=20260703fix7" />
 </head>
 <body>
   <div id="toast" class="toast"></div>
   <aside class="sidebar">
     <div class="brand-card">
-      <img id="brandLogo" src="/assets/brand/nexttoppers_logo.png" alt="logo" />
+      <img id="brandLogo" src="/assets/brand/nexttoppers_logo.png" alt="organization logo" />
       <div>
         <div id="sideOrgName" class="side-org">Sagar</div>
         <div class="side-app">System Health Monitor V10</div>
       </div>
     </div>
+    <div class="nav-title">Main Menu</div>
     <button class="nav active" data-tab="command">Home / Command Center</button>
     <button class="nav" data-tab="fleet">Machine Fleet</button>
     <button class="nav" data-tab="machine360">Machine 360</button>
@@ -40,7 +41,7 @@
         <img id="topLogo" src="/assets/brand/nexttoppers_logo.png" alt="logo" />
         <div>
           <h1 id="pageTitle">Home / Command Center</h1>
-          <p id="pageSubTitle">Live overview from server DB/API. No dummy data.</p>
+          <p id="pageSubTitle">Simple live overview. No dummy data. Click any count or machine to drill down.</p>
         </div>
       </div>
       <div class="top-actions">
@@ -48,17 +49,14 @@
         <button class="btn primary" onclick="refreshAll()">Refresh Live Data</button>
       </div>
     </header>
-    <section class="hero">
+    <section class="hero clean-hero">
       <div class="hero-left">
         <span class="mini-badge">Live V10 Customer Version</span>
         <h2><span id="heroOrg">Sagar</span> · System Health Monitor</h2>
-        <p id="heroText">Logo and organization name are editable. Internal pages use clean corporate UI, no photo background. Live data only.</p>
+        <p id="heroText">Editable organization name, logo and website. Internal pages show logo only. Login/team photo is kept only for login background preview.</p>
       </div>
-      <div class="hero-right">
-        <div class="logo-orb"><img src="/assets/brand/nexttoppers_logo.png" alt="logo" /></div>
-      </div>
+      <div class="hero-right"><div class="logo-orb"><img src="/assets/brand/nexttoppers_logo.png" alt="logo" /></div></div>
     </section>
-
     <section id="command" class="tab show"></section>
     <section id="fleet" class="tab"></section>
     <section id="machine360" class="tab"></section>
@@ -75,8 +73,8 @@
     <section id="notifications" class="tab"></section>
     <section id="deploy" class="tab"></section>
     <section id="settings" class="tab"></section>
-  <div id="staticFooter" style="display:none">Created by Sagar Kerhalkar · 8105977226 · sagarkerhalkar.com</div>
+    <div id="staticFooter" class="signature-footer">Created by <b>Sagar Kerhalkar</b> · Contact: <b>8105977226</b> · Profile: <a href="https://sagarkerhalkar.com" target="_blank">sagarkerhalkar.com</a></div>
   </main>
-  <script src="/v10_phase3_clean.js?v=20260703fix6"></script>
+  <script src="/v10_phase3_global.js?v=20260703fix7"></script>
 </body>
 </html>
