@@ -98,3 +98,9 @@ Problem:
 - GitHub check script was missing at first run.
 Solution:
 - Added clean corporate UI, no internal photo background, visible inventory edit actions, API compatibility, and GitHub status script.
+
+## 20260703_153315 - Fix7 UI rejection correction
+Problem:
+- Dark theme, confusing UI, notification edit controls missing, settings incomplete, inventory edit not obvious.
+Solution:
+- Light corporate theme, explanatory Home, notification rule action controls, Settings user/role/password controls, visible Edit/Delete and form instructions.
