@@ -195,3 +195,12 @@ Solution: disable old refresh/render conflict; selected-machine UI owns six page
 Error: selected hostname/query ignored and UI returned current/default machine; server treated as client; old renderer kept conflicting.
 Solution: add selected-machine contract endpoints and UI binding; request machine_id strictly and verify returned_machine_id equals requested.
 
+
+## 2026-07-03 End-of-Day Handoff
+- User stopped coding for today and requested all conversation, GitHub findings, errors, and next solution be stored in GitHub.
+- Root cause locked: V10 browser runtime is loading multiple old patch scripts together. Old renderer and selected-machine renderer fight each other.
+- 2278 is working and must not be touched.
+- Tomorrow must start with V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP, not ISO and not another overlay patch.
+- New handoff docs:
+  - docs/V10_20260703_END_OF_DAY_FINAL_HANDOFF_TOMORROW.md
+  - docs/V10_20260703_GITHUB_SOURCE_FINDINGS_AND_ROOT_CAUSE.md
