@@ -104,3 +104,10 @@ Problem:
 - Dark theme, confusing UI, notification edit controls missing, settings incomplete, inventory edit not obvious.
 Solution:
 - Light corporate theme, explanatory Home, notification rule action controls, Settings user/role/password controls, visible Edit/Delete and form instructions.
+
+## 20260703_160906 - Phase3 Fix8 customer UI correction
+Problem:
+- Fix7 still showed customer-facing GitHub option, incomplete settings/user management, router ISP not clearly separated from client data, notification rule save not complete, and UI was too simple for customer expectation.
+Solution:
+- Apply Fix8 customer UI: no GitHub button in UI, original logo visible, router ISP table/form from DB, Settings upload controls, User / Role Management, password reset, notification rule controls, ISO evidence rule, live API only.
+Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\V10_2DAY_PHASE3_FIX8_CUSTOMER_UI_20260703_160906

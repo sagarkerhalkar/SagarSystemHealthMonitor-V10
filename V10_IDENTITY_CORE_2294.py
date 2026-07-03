@@ -3844,6 +3844,21 @@ try:
 except Exception as _v10fix7_e:
     print("V10_PHASE3_FIX7_GLOBAL_LIGHT_CORPORATE_LIVE_FAILED", _v10fix7_e)
 # === V10_PHASE3_FIX7_GLOBAL_LIGHT_HOOK_END ===
+
+
+# === V10_PHASE3_FIX8_CUSTOMER_UI_HOOK_START ===
+try:
+    import importlib.util as _v10fix8_util
+    from pathlib import Path as _v10fix8_path
+    _v10fix8_file = _v10fix8_path(BASE_DIR) / "v10_phase3_fix8_customer_ui_api.py"
+    _v10fix8_spec = _v10fix8_util.spec_from_file_location("v10_phase3_fix8_customer_ui_api", str(_v10fix8_file))
+    _v10fix8_mod = _v10fix8_util.module_from_spec(_v10fix8_spec)
+    _v10fix8_spec.loader.exec_module(_v10fix8_mod)
+    _v10fix8_mod.install(Handler, BASE_DIR, load_latest)
+    print("V10_PHASE3_FIX8_CUSTOMER_UI_ROUTER_USER_NOTIFY_LOADED")
+except Exception as _v10fix8_e:
+    print("V10_PHASE3_FIX8_CUSTOMER_UI_ROUTER_USER_NOTIFY_FAILED", _v10fix8_e)
+# === V10_PHASE3_FIX8_CUSTOMER_UI_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -3871,6 +3886,7 @@ if __name__ == "__main__":
 
 # === V10_NEXTTOPPERS_UI_FIX2_REALDATA_SOURCE_LOCK ===
 # UI Fix2: readability, deploy center, active notifications, settings retention days. Main 2278 untouched.
+
 
 
 
