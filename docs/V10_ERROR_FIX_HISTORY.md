@@ -149,3 +149,6 @@ Hardware read-only source passed with live machines. Software source now added r
 ## 20260703_185203 - Duplicate UI issue fixed path
 - Previous pages showed old V10 cards plus new 2278 section, making progress look like zero. This patch does not add new backend logic; it binds verified data to existing tabs and removes duplicate panel rendering from user-facing tabs.
 
+
+## 20260703_191424 - Test timeout root cause
+The machine-wise clean UI test passed index, hardware source, fresh machine arrays, and software rows. It timed out only on notification simulation. This fix intercepts notification-test with a fast read-only evaluator and cache.
