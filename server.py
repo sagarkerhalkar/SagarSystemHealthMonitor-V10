@@ -2033,6 +2033,21 @@ try:
 except Exception as _v10fix5_e:
     print("V10_PHASE3_FIX5_MACHINES_API_GITHUB_VERIFY_FAILED", _v10fix5_e)
 # === V10_PHASE3_FIX5_MACHINES_API_GITHUB_VERIFY_HOOK_END ===
+
+
+# === V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_HOOK_START ===
+try:
+    import importlib.util as _v10fix6_util
+    from pathlib import Path as _v10fix6_path
+    _v10fix6_file = _v10fix6_path(BASE_DIR) / "v10_phase3_fix6_clean_live_api.py"
+    _v10fix6_spec = _v10fix6_util.spec_from_file_location("v10_phase3_fix6_clean_live_api", str(_v10fix6_file))
+    _v10fix6_mod = _v10fix6_util.module_from_spec(_v10fix6_spec)
+    _v10fix6_spec.loader.exec_module(_v10fix6_mod)
+    _v10fix6_mod.install(Handler, BASE_DIR, load_latest)
+    print("V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_LOADED")
+except Exception as _v10fix6_e:
+    print("V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_FAILED", _v10fix6_e)
+# === V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -2051,6 +2066,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 

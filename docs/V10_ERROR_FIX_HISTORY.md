@@ -90,3 +90,11 @@ Root cause:
 The live endpoint was reachable, but the response shape was not standardized for the Phase3 UI/test. The UI needs a stable machines array for Machine Fleet, Command Center click-through, issue filters and Machine 360 navigation.
 Fix:
 Phase3 Fix5 normalizes /api/v10final/machines to always return machines array plus counts and issue status from live latest data. It does not fake hardware/software/GPU/disk data.
+
+## 20260703_151410 - Fix6 user UI/data complaints
+Problem:
+- UI still did not match locked requirement and looked confusing.
+- Hardware API test expected rows/assets compatibility but old route returned a different shape.
+- GitHub check script was missing at first run.
+Solution:
+- Added clean corporate UI, no internal photo background, visible inventory edit actions, API compatibility, and GitHub status script.
