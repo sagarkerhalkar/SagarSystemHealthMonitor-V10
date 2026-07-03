@@ -33,3 +33,9 @@ Previous docs were not detailed enough and did not include full progress matrix.
 ### Required fix
 Create and store `V10_COMPLETE_REQUIREMENT_PROGRESS_MATRIX.md` and keep it updated for every change.
 
+
+## 20260703_120209 - Phase 1 prevention fix
+Problem:
+- Earlier builds changed UI before DB/API foundation.
+Fix:
+- Added DB-first bridge and tests before UI work.
