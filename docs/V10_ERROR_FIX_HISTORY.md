@@ -125,3 +125,9 @@ To avoid patch loop, this change only adds DB/API/tests for ISP/WAN settings bef
 ## 2026-07-03 17:32:52
 - Requirement update: after ISP/WAN DB/API test pass, added UI phase for 1-10 ISP links in Settings and Home status. No dummy ISP speed; not from clients.
 
+
+## 2026-07-03 - ISP/WAN UI test JSON decode fix
+- Test failure: Non-JSON from /api/v10/settings/isp-links.
+- Actual response was valid JSON but PowerShell rendered byte-array content as ASCII decimal numbers.
+- Updated test helper to decode byte arrays as UTF-8 and use Invoke-RestMethod for JSON endpoints.
+- No app code or DB logic changed.
