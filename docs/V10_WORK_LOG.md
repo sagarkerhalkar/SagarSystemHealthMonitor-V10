@@ -422,3 +422,7 @@ Auto-save V10 source
 - Added API endpoints for ISP/WAN CRUD, sample CSV, export CSV, and automatic gateway/Cloudflare status probe.
 - ISP data is not taken from client machine payload.
 - Per-WAN speed is not faked; it requires router API/SNMP/Omada feed or routed WAN probe.
+
+## 2026-07-03 17:27:49
+Scheduled auto-save V10 source
+
