@@ -53,3 +53,12 @@ Key decision: do not touch 2278. V10 reads 2278 read-only only. Do not move to I
 ## 2026-07-03T20:11:27 - Selected-machine rule locked
 Every machine detail page must use machine_id. If machine_id is selected, hardware/software/network must return the same machine_id. Server health must be separate from client machine data. Do not move to ISO until this passes.
 
+
+## 2026-07-03 End-of-Day Handoff
+- User stopped coding for today and requested all conversation, GitHub findings, errors, and next solution be stored in GitHub.
+- Root cause locked: V10 browser runtime is loading multiple old patch scripts together. Old renderer and selected-machine renderer fight each other.
+- 2278 is working and must not be touched.
+- Tomorrow must start with V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP, not ISO and not another overlay patch.
+- New handoff docs:
+  - docs/V10_20260703_END_OF_DAY_FINAL_HANDOFF_TOMORROW.md
+  - docs/V10_20260703_GITHUB_SOURCE_FINDINGS_AND_ROOT_CAUSE.md
