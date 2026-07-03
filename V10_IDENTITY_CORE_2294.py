@@ -3784,6 +3784,21 @@ try:
 except Exception as _v10p2_e:
     print("V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_FAILED", _v10p2_e)
 # === V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_HOOK_END ===
+
+
+# === V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_HOOK_START ===
+try:
+    import importlib.util as _v10fix3_util
+    from pathlib import Path as _v10fix3_path
+    _v10fix3_file = _v10fix3_path(BASE_DIR) / "v10_phase3_fix4_extra_api.py"
+    _v10fix3_spec = _v10fix3_util.spec_from_file_location("v10_phase3_fix4_extra_api", str(_v10fix3_file))
+    _v10fix3_mod = _v10fix3_util.module_from_spec(_v10fix3_spec)
+    _v10fix3_spec.loader.exec_module(_v10fix3_mod)
+    _v10fix3_mod.install(Handler, BASE_DIR, load_latest)
+    print("V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_LOADED")
+except Exception as _v10fix3_e:
+    print("V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_FAILED", _v10fix3_e)
+# === V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -3811,5 +3826,6 @@ if __name__ == "__main__":
 
 # === V10_NEXTTOPPERS_UI_FIX2_REALDATA_SOURCE_LOCK ===
 # UI Fix2: readability, deploy center, active notifications, settings retention days. Main 2278 untouched.
+
 
 
