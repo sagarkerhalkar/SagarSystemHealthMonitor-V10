@@ -137,3 +137,7 @@ This patch only adds Home traffic KPI API/UI. It does not change 2278 and does n
 
 ## 20260703_175628 - 2278 API 401 explained
 2278 /api/clients, /api/machines, /api/latest, /api/notifications, /api/notification-rules can return 401 because login is required. This is not a V10 connector failure. V10 reads the DB read-only instead.
+
+## 20260703_180848 - 2278 API 401 and hardware next step
+2278 HTTP API 401 is expected because login is required. V10 hardware connector uses DB read-only and includes notification test verification. No 2278 write/restart.
+
