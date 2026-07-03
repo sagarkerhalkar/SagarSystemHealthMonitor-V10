@@ -251,3 +251,9 @@ Scheduled auto-save V10 source
 - Added local test 	ests/TEST_V10_2DAY_PHASE1_DB_API_BRIDGE.ps1.
 - Backup created at $Backup.
 - Main 2278 not touched.
+
+## 20260703_120601 - Phase 1 test fixed
+- Fixed test assumption for /api/health.
+- Old server health endpoint can return status: ok instead of ok: true.
+- No backend logic changed.
+- Backup created at $Backup.
