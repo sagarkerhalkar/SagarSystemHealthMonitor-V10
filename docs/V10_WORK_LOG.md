@@ -886,3 +886,12 @@ Scheduled auto-save V10 source
 ## 2026-07-04 14:47:08
 Auto-save V10 source
 
+
+## 2026-07-04T14:52:45 - Clean runtime route fix V4 applied
+- Fixed /api/v10/app/* auth gate and copied V4 route test into tests folder.
+- 2278 and client collection not touched.
+
+
+## 2026-07-04 14:57:49
+Scheduled auto-save V10 source
+

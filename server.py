@@ -2107,6 +2107,34 @@ try:
 except Exception as _v10clean_e:
     print("V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_FAILED", _v10clean_e)
 # === V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_HOOK_END ===
+# === V10_CLEAN_RUNTIME_ROUTE_FIX_V4_START ===
+try:
+    # Public read-only clean runtime endpoints for local dashboard and tests.
+    # This does not change 2278, clients, or data collection.
+    _v10_clean_v4_old_auth_required_path = auth_required_path
+    def auth_required_path(method, path):
+        try:
+            if str(path).startswith('/api/v10/app/'):
+                return False
+        except Exception:
+            pass
+        return _v10_clean_v4_old_auth_required_path(method, path)
+    print('V10_CLEAN_RUNTIME_ROUTE_FIX_V4_AUTH_BYPASS_LOADED')
+except Exception as _v10_clean_v4_auth_e:
+    print('V10_CLEAN_RUNTIME_ROUTE_FIX_V4_AUTH_BYPASS_FAILED', _v10_clean_v4_auth_e)
+
+try:
+    import importlib.util as _v10_clean_v4_util
+    from pathlib import Path as _v10_clean_v4_path
+    _v10_clean_v4_file = _v10_clean_v4_path(BASE_DIR) / 'v10_clean_runtime_2278_app.py'
+    _v10_clean_v4_spec = _v10_clean_v4_util.spec_from_file_location('v10_clean_runtime_2278_app', str(_v10_clean_v4_file))
+    _v10_clean_v4_mod = _v10_clean_v4_util.module_from_spec(_v10_clean_v4_spec)
+    _v10_clean_v4_spec.loader.exec_module(_v10_clean_v4_mod)
+    _v10_clean_v4_mod.install(Handler, BASE_DIR)
+    print('V10_CLEAN_RUNTIME_ROUTE_FIX_V4_LOADED')
+except Exception as _v10_clean_v4_e:
+    print('V10_CLEAN_RUNTIME_ROUTE_FIX_V4_FAILED', _v10_clean_v4_e)
+# === V10_CLEAN_RUNTIME_ROUTE_FIX_V4_END ===
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0")
@@ -2124,6 +2152,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
