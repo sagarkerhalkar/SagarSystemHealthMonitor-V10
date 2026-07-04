@@ -175,8 +175,7 @@ def valid_session(token: str) -> bool:
     return bool(session_info(token))
 
 
-def auth_required_path(method: str, path: str) -> bool:
-    # Heartbeats and install scripts must stay open so clients can report and update.
+def\ auth_required_path\(method:\ str,\ path:\ str\)\ ->\ bool:\n\ \ \ \ \#\ V10_CLEAN_RUNTIME_AUTH_GATE_FIX_START\n\ \ \ \ \#\ Clean\ runtime\ read-only\ dashboard\ APIs\ must\ be\ reachable\ by\ the\ static\ dashboard\ and\ by\ local\ tests\.\n\ \ \ \ \#\ They\ do\ not\ write\ to\ 2278\ and\ they\ are\ used\ only\ to\ read\ the\ verified\ 2278-selected-machine\ contract\.\n\ \ \ \ if\ method\ ==\ "GET"\ and\ \(path\ ==\ "/api/v10/app/health"\ or\ path\.startswith\("/api/v10/app/"\)\):\n\ \ \ \ \ \ \ \ return\ False\n\ \ \ \ \#\ V10_CLEAN_RUNTIME_AUTH_GATE_FIX_END    # Heartbeats and install scripts must stay open so clients can report and update.
     public_get = {"/api/health", "/api/auth/status"}
     public_post = {"/api/heartbeat", "/heartbeat", "/submit", "/api/auth/login"}
     if method == "GET" and (path in public_get or path.startswith("/scripts/")):
@@ -2094,6 +2093,20 @@ except Exception as _v10fix9_e:
     print("V10_PHASE3_FIX9_CUSTOMER_UI_ROUTER_USER_NOTIFY_FAILED", _v10fix9_e)
 # === V10_PHASE3_FIX9_REQUIREMENT_LOCK_HOOK_END ===
 
+
+# === V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_HOOK_START ===
+try:
+    import importlib.util as _v10clean_util
+    from pathlib import Path as _v10clean_path
+    _v10clean_file = _v10clean_path(BASE_DIR) / "v10_clean_app_2278_api.py"
+    _v10clean_spec = _v10clean_util.spec_from_file_location("v10_clean_app_2278_api", str(_v10clean_file))
+    _v10clean_mod = _v10clean_util.module_from_spec(_v10clean_spec)
+    _v10clean_spec.loader.exec_module(_v10clean_mod)
+    _v10clean_mod.install(Handler, BASE_DIR)
+    print("V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_LOADED")
+except Exception as _v10clean_e:
+    print("V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_FAILED", _v10clean_e)
+# === V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_HOOK_END ===
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0")
@@ -2111,6 +2124,8 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
 
 
 

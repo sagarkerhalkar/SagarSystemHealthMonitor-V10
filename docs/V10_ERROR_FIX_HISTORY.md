@@ -204,3 +204,9 @@ Solution: add selected-machine contract endpoints and UI binding; request machin
 - New handoff docs:
   - docs/V10_20260703_END_OF_DAY_FINAL_HANDOFF_TOMORROW.md
   - docs/V10_20260703_GITHUB_SOURCE_FINDINGS_AND_ROOT_CAUSE.md
+
+## 2026-07-04T14:41:20 - Clean runtime auth gate fix
+- Test showed index uses only clean runtime.
+- /api/v10/app/health returned login_required because original auth gate protected all /api/* paths.
+- Whitelisted GET /api/v10/app/* for clean runtime read-only dashboard/test access.
+- No 2278/client/data collection logic changed.
