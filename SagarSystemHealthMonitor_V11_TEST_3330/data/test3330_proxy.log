@@ -1,0 +1,43 @@
+2026-07-04 12:21:45 Starting Sagar System Health Monitor V11 Test 3330 Bridge on http://127.0.0.1:3330, source=http://127.0.0.1:2278, allow_write_2278=False
+2026-07-04 12:21:51 127.0.0.1 - "GET /api/test3330/health HTTP/1.1" 200 -
+2026-07-04 12:22:06 Starting Sagar System Health Monitor V11 Test 3330 Bridge on http://127.0.0.1:3330, source=http://127.0.0.1:2278, allow_write_2278=False
+2026-07-04 12:22:07 127.0.0.1 - "GET /api/test3330/health HTTP/1.1" 200 -
+2026-07-04 17:58:05 Starting Sagar System Health Monitor V11 Test 3330 Bridge on http://0.0.0.0:3330, source=http://127.0.0.1:2278, allow_write_2278=False
+2026-07-04 17:58:20 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-07-04 17:58:20 127.0.0.1 - "GET /styles.css?v=20260704-v11-one-go HTTP/1.1" 200 -
+2026-07-04 17:58:20 127.0.0.1 - "GET /app.js?v=20260704-v11-one-go HTTP/1.1" 200 -
+2026-07-04 17:58:20 127.0.0.1 - code 404, message File not found
+2026-07-04 17:58:20 127.0.0.1 - "GET /favicon.ico HTTP/1.1" 404 -
+2026-07-04 17:58:20 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 17:58:34 127.0.0.1 - "POST /api/auth/login HTTP/1.1" 200 -
+2026-07-04 17:58:34 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 17:58:43 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 17:58:48 127.0.0.1 - "GET /api/overview HTTP/1.1" 200 -
+2026-07-04 17:58:50 127.0.0.1 - "POST /api/auth/login HTTP/1.1" 502 -
+2026-07-04 17:59:03 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 17:59:08 127.0.0.1 - "GET /api/changes HTTP/1.1" 502 -
+ 502 -
+18 HTTP/1.1" 502 -
+2026-07-04 17:59:08 127.0.0.1 - "GET /api/assets/software HTTP/1.1" 200 -
+2026-07-04 17:59:08 127.0.0.1 - "GET /api/iso-audit HTTP/1.1" 200 -
+2026-07-04 17:59:10 127.0.0.1 - "GET /api/notifications HTTP/1.1" 200 -
+2026-07-04 17:59:23 127.0.0.1 - "GET /api/notifications/rules HTTP/1.1" 502 -
+2026-07-04 18:00:27 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:00:27 127.0.0.1 - "GET /api/machine?id=ASSET%3ABA0192056A86677B HTTP/1.1" 502 -
+2026-07-04 18:00:47 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 18:01:34 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:01:48 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:01:52 127.0.0.1 - "GET /api/machine?id=ASSET%3A2EBF5C5069838810 HTTP/1.1" 502 -
+2026-07-04 18:01:54 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 18:02:08 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 18:02:45 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:02:48 127.0.0.1 - "GET /api/machine?id=ASSET%3AAB01F483B287E2E7 HTTP/1.1" 502 -
+2026-07-04 18:03:02 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:03:04 127.0.0.1 - "GET /api/machine?id=ASSET%3A23E70A3B5301A7CB HTTP/1.1" 502 -
+2026-07-04 18:03:05 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 18:03:22 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 18:03:40 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:03:55 127.0.0.1 - "GET /api/machine?id=ASSET%3A96F0AA4E236EF0BE HTTP/1.1" 502 -
+2026-07-04 18:04:00 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
+2026-07-04 18:04:12 127.0.0.1 - "GET /api/auth/status HTTP/1.1" 200 -
+2026-07-04 18:04:32 127.0.0.1 - "GET /api/overview HTTP/1.1" 502 -
