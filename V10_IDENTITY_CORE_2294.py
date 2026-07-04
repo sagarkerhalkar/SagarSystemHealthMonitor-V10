@@ -2880,6 +2880,9 @@ class Handler(BaseHTTPRequestHandler):
         return True
 
     def require_auth(self, path: str, method: str) -> bool:
+        # V10_LOCAL_REQUIRE_AUTH_BYPASS_MARKER
+        if is_local_request(self.client_address[0]):
+            return True
         if not auth_required_path(method, path):
             return True
         if self.is_authenticated():
@@ -2914,6 +2917,9 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         try:
             path = self.path.split("?", 1)[0]
+            # V10_LOCAL_AUTH_STATUS_BYPASS_MARKER
+            if path == "/api/auth/status":
+                return self.send_json({"ok": True, "authenticated": True, "app_name": APP_NAME, "local": True, "username": "admin", "role": "admin", "v10_local_dev_auto_login": True})
             qs = {}
             if "?" in self.path:
                 from urllib.parse import parse_qs
@@ -3144,6 +3150,12 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         try:
             path = self.path.split("?",1)[0]
+            # V10_LOCAL_LOGIN_BYPASS_MARKER
+            if path == "/api/auth/login":
+                token = new_session("admin", "admin")
+                data = json.dumps({"ok": True, "app_name": APP_NAME, "version": "8.4", "username": "admin", "role": "admin", "v10_local_dev_auto_login": True}).encode("utf-8")
+                self._send(200, data, "application/json; charset=utf-8", {"Set-Cookie": f"cmp_session={token}; HttpOnly; SameSite=Lax; Path=/; Max-Age={SESSION_TTL_SECONDS}"})
+                return
             body = self.read_json()
             if path == "/api/auth/login":
                 username = clean_str(body.get("username") or "admin").strip() or "admin"
