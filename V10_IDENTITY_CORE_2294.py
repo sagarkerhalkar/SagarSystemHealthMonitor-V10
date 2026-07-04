@@ -176,6 +176,9 @@ def valid_session(token: str) -> bool:
 
 
 def auth_required_path(method: str, path: str) -> bool:
+    # V10_TODAY_FINAL_CLEAN_APP_AUTH_BYPASS
+    if method == "GET" and (path == "/api/v10/app/health" or str(path).startswith("/api/v10/app/")):
+        return False
     # V10_ACTIVE_CLEAN_APP_AUTH_BYPASS
     if method == "GET" and (path == "/api/v10/app/health" or str(path).startswith("/api/v10/app/")):
         return False
@@ -4001,6 +4004,21 @@ try:
 except Exception as _v10active_e:
     print("V10_ACTIVE_CLEAN_RUNTIME_APP_FAILED", _v10active_e)
 # === V10_ACTIVE_CLEAN_RUNTIME_APP_HOOK_END ===
+
+
+# === V10_TODAY_FINAL_SELF_CONTAINED_2278_MAPPER_HOOK_START ===
+try:
+    import importlib.util as _v10today_util
+    from pathlib import Path as _v10today_path
+    _v10today_file = _v10today_path(BASE_DIR) / "v10_clean_runtime_2278_app.py"
+    _v10today_spec = _v10today_util.spec_from_file_location("v10_clean_runtime_2278_app_today", str(_v10today_file))
+    _v10today_mod = _v10today_util.module_from_spec(_v10today_spec)
+    _v10today_spec.loader.exec_module(_v10today_mod)
+    _v10today_mod.install(Handler, BASE_DIR)
+    print("V10_TODAY_FINAL_SELF_CONTAINED_2278_MAPPER_LOADED")
+except Exception as _v10today_e:
+    print("V10_TODAY_FINAL_SELF_CONTAINED_2278_MAPPER_FAILED", _v10today_e)
+# === V10_TODAY_FINAL_SELF_CONTAINED_2278_MAPPER_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
