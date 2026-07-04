@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101827" />
+  <title>Sagar · System Health Monitor V11</title>
+  <link rel="stylesheet" href="/styles.css?v=20260704-v11-one-go" />
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card glass">
+      <div class="login-brand">
+        <div class="logo-mark">SK</div>
+        <div>
+          <h1>Sagar System Health Monitor</h1>
+          <p>Commercial Windows + Ubuntu monitoring · port 2278</p>
+        </div>
+      </div>
+      <form id="loginForm" class="login-form">
+        <label>Username <input id="loginUsername" autocomplete="username" value="admin" /></label>
+        <label>Password <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Admin password" /></label>
+        <button class="btn primary wide" type="submit">Login</button>
+        <div id="loginError" class="form-error"></div>
+      </form>
+      <div class="login-foot">Live server: <b>2278</b> · Domain: <b>monitor.sagarkerhalkar.com</b></div>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-block">
+        <div class="logo-mark small">SK</div>
+        <div>
+          <b id="orgName">Sagar</b>
+          <small>System Health Monitor V11</small>
+        </div>
+      </div>
+      <nav id="nav"></nav>
+      <div class="side-status">
+        <span id="apiDot" class="dot"></span>
+        <span id="apiStatus">Checking server</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar glass">
+        <button id="menuBtn" class="icon-btn">☰</button>
+        <div>
+          <h2 id="pageTitle">Home / Command Center</h2>
+          <p id="pageSub">Live commercial monitoring · no fake values · selected-machine stable</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn" id="refreshBtn">Refresh</button>
+          <button class="btn danger" id="logoutBtn">Logout</button>
+        </div>
+      </header>
+      <section id="content" class="content"></section>
+      <footer id="footer" class="footer">Created by <b>Sagar Kerhalkar</b> · Contact: <b>8105977226</b> · <a href="https://sagarkerhalkar.com" target="_blank" rel="noreferrer">sagarkerhalkar.com</a></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="/app.js?v=20260704-v11-one-go"></script>
+</body>
+</html>
