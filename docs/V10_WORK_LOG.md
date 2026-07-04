@@ -862,3 +862,23 @@ Scheduled auto-save V10 source
 ## 2026-07-04 14:17:09
 Auto-save V10 source
 
+
+## 2026-07-04 14:27:49
+Scheduled auto-save V10 source
+
+
+## 2026-07-04 14:34:55 - V10 Clean Runtime 2278 Selected Machine App
+- Replaced browser runtime with one clean app JS and one CSS file.
+- Stopped loading old patch-chain JS from public/index.html.
+- Added /api/v10/app/* clean API contract using 2278 read-only source.
+- Core pages only: Home, Machine Fleet, Machine 360, Network + VPN, Hardware Intelligence, Software Intelligence.
+- ISO and other feature pages parked until core acceptance passes.
+- 2278 and clients were not touched.
+- Backup: D:\SagarMonitor_V10_CleanBuild\INCREMENTAL_SOURCE_BACKUPS\BEFORE_V10_CLEAN_RUNTIME_2278_SELECTED_MACHINE_APP_20260704_143455
+
+
+## 2026-07-04T14:41:20 - Clean runtime auth gate fix
+- Test showed index uses only clean runtime.
+- /api/v10/app/health returned login_required because original auth gate protected all /api/* paths.
+- Whitelisted GET /api/v10/app/* for clean runtime read-only dashboard/test access.
+- No 2278/client/data collection logic changed.
