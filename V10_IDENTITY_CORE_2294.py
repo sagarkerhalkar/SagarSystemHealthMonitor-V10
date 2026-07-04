@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Sagar Kerhalkar System Monitor Tool - zero dependency receiver + premium dashboard.
 Runs with Python standard library only.
@@ -176,6 +176,9 @@ def valid_session(token: str) -> bool:
 
 
 def auth_required_path(method: str, path: str) -> bool:
+    # V10_ACTIVE_CLEAN_APP_AUTH_BYPASS
+    if method == "GET" and (path == "/api/v10/app/health" or str(path).startswith("/api/v10/app/")):
+        return False
     # Heartbeats and install scripts must stay open so clients can report and update.
     public_get = {"/api/health", "/api/auth/status"}
     public_post = {"/api/heartbeat", "/heartbeat", "/submit", "/api/auth/login"}
@@ -3754,7 +3757,8 @@ except Exception as _hcl_e:
     print("HISTORY_CACHE_LITE_FAILED", _hcl_e)
 # === HISTORY_CACHE_LITE_HOOK_END ===
 
-
+
+
 
 # === V10_2DAY_PHASE1_DB_API_BRIDGE_HOOK_START ===
 try:
@@ -3769,7 +3773,8 @@ try:
 except Exception as _v10final_e:
     print("V10_2DAY_PHASE1_DB_API_BRIDGE_FAILED", _v10final_e)
 # === V10_2DAY_PHASE1_DB_API_BRIDGE_HOOK_END ===
-
+
+
 
 # === V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_HOOK_START ===
 try:
@@ -3784,7 +3789,8 @@ try:
 except Exception as _v10p2_e:
     print("V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_FAILED", _v10p2_e)
 # === V10_2DAY_PHASE2_CLIENT_PAYLOAD_NORMALIZER_HOOK_END ===
-
+
+
 
 # === V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_HOOK_START ===
 try:
@@ -3799,7 +3805,8 @@ try:
 except Exception as _v10fix3_e:
     print("V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_FAILED", _v10fix3_e)
 # === V10_PHASE3_FIX4_FULL_TAB_REQUIREMENTS_LIVE_HOOK_END ===
-
+
+
 
 # === V10_PHASE3_FIX5_MACHINES_API_GITHUB_VERIFY_HOOK_START ===
 try:
@@ -3814,7 +3821,8 @@ try:
 except Exception as _v10fix5_e:
     print("V10_PHASE3_FIX5_MACHINES_API_GITHUB_VERIFY_FAILED", _v10fix5_e)
 # === V10_PHASE3_FIX5_MACHINES_API_GITHUB_VERIFY_HOOK_END ===
-
+
+
 
 # === V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_HOOK_START ===
 try:
@@ -3829,7 +3837,8 @@ try:
 except Exception as _v10fix6_e:
     print("V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_FAILED", _v10fix6_e)
 # === V10_PHASE3_FIX6_CLEAN_CORPORATE_LIVE_HOOK_END ===
-
+
+
 
 # === V10_PHASE3_FIX7_GLOBAL_LIGHT_HOOK_START ===
 try:
@@ -3844,7 +3853,8 @@ try:
 except Exception as _v10fix7_e:
     print("V10_PHASE3_FIX7_GLOBAL_LIGHT_CORPORATE_LIVE_FAILED", _v10fix7_e)
 # === V10_PHASE3_FIX7_GLOBAL_LIGHT_HOOK_END ===
-
+
+
 
 # === V10_PHASE3_FIX8_CUSTOMER_UI_HOOK_START ===
 try:
@@ -3859,7 +3869,8 @@ try:
 except Exception as _v10fix8_e:
     print("V10_PHASE3_FIX8_CUSTOMER_UI_ROUTER_USER_NOTIFY_FAILED", _v10fix8_e)
 # === V10_PHASE3_FIX8_CUSTOMER_UI_HOOK_END ===
-
+
+
 
 # === V10_PHASE3_FIX9_REQUIREMENT_LOCK_HOOK_START ===
 try:
@@ -3972,6 +3983,24 @@ try:
 except Exception as _v10sel_e:
     print("V10_SELECTED_MACHINE_DATA_CONTRACT_FAILED", _v10sel_e)
 # === V10_SELECTED_MACHINE_DATA_CONTRACT_HOOK_END ===
+
+
+# === V10_ACTIVE_CLEAN_RUNTIME_APP_HOOK_START ===
+try:
+    import importlib.util as _v10active_util
+    from pathlib import Path as _v10active_path
+    _v10active_file = _v10active_path(BASE_DIR) / "v10_clean_runtime_2278_app.py"
+    if _v10active_file.exists():
+        _v10active_spec = _v10active_util.spec_from_file_location("v10_clean_runtime_2278_app_active", str(_v10active_file))
+        _v10active_mod = _v10active_util.module_from_spec(_v10active_spec)
+        _v10active_spec.loader.exec_module(_v10active_mod)
+        _v10active_mod.install(Handler, BASE_DIR)
+        print("V10_ACTIVE_CLEAN_RUNTIME_APP_LOADED")
+    else:
+        print("V10_ACTIVE_CLEAN_RUNTIME_APP_MISSING", _v10active_file)
+except Exception as _v10active_e:
+    print("V10_ACTIVE_CLEAN_RUNTIME_APP_FAILED", _v10active_e)
+# === V10_ACTIVE_CLEAN_RUNTIME_APP_HOOK_END ===
 
 def main() -> None:
     parser = argparse.ArgumentParser()
